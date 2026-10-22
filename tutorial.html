@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorial — Sitting Ducks Online</title>
+<link rel="alternate" hreflang="it" href="it/tutorial.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html">Online</a>
+    <a href="tutorial.html" aria-current="page">Tutorial</a>
+    <a href="engine.html">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#support">Support</a>
+    <a class="lang" href="it/tutorial.html" lang="it" hreflang="it">IT</a>
+  </nav>
+</header>
+<main>
+  <h1>Tutorial</h1>
+  <p class="lead">From installation to your first online game. The launcher is currently in Italian: the English meaning of each button is given in brackets.</p>
+
+  <nav class="card toc" aria-label="Contents">
+    <ul>
+      <li><a href="#install">Installing the mod</a></li>
+      <li><a href="#online">Playing online</a></li>
+      <li><a href="#host">Hosting a game</a></li>
+      <li><a href="#trouble">If something goes wrong</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="install">Installing the mod</h2>
+  <!-- Installation video: <iframe src="https://www.youtube-nocookie.com/embed/ID" allowfullscreen></iframe> -->
+  <div class="media"></div>
+
+  <h3>1. What you need</h3>
+  <ul>
+    <li><a href="https://pcsx2.net/">PCSX2</a> (tested with v2.9).</li>
+    <li>Your own copy of <em>Sitting Ducks</em> for PS2, <strong>European release SLES-52116</strong>, as an ISO. The launcher needs the modified ISO
+      (van and no startup logos): the tool that builds it from your copy is in the works.</li>
+    <li>Your PS2's BIOS.</li>
+  </ul>
+  <p>We do not distribute the game, the BIOS or extracted files.</p>
+
+  <h3>2. Download and open the launcher</h3>
+  <ul>
+    <li><strong>macOS:</strong> download <code>Sitting-Ducks-Online-macOS-arm64.zip</code> from the <a href="releases.html">Releases</a> page, unzip it and open
+      <strong>Sitting Ducks Online.app</strong>. The first time, right-click → Open, because the app isn't signed.</li>
+    <li><strong>Windows:</strong> unzip the <strong>whole</strong> folder, not just the <code>.exe</code>, and open <strong>Sitting Ducks Online.exe</strong>.
+      From the sources, <code>gioca_online.bat</code> downloads and verifies Python on its own the first time.</li>
+  </ul>
+
+  <h3>3. Setup</h3>
+  <p>Open the <strong>Configurazione</strong> (Setup) tab and use <strong>Scegli…</strong> (Choose) to pick PCSX2 (the <code>.app</code> bundle on Mac), the ISO and the BIOS.
+    Then press <strong>Salva configurazione</strong> (Save). The launcher sets memory, patches and the link to the game on its own.</p>
+  <div class="media"><img src="media/launcher-configurazione.png" alt="Launcher Setup tab"></div>
+
+  <h3>4. Ready</h3>
+  <p>The <strong>Gioca</strong> (Play) tab now says «Pronto.» (Ready). Name, address and paths are remembered for next time.
+    Launcher data lives in <code>~/Library/Application Support/Sitting Ducks Online/</code> (Mac) and <code>%LOCALAPPDATA%\Sitting Ducks Online\</code> (Windows):
+    <strong>Apri dati</strong> (Open data) opens the folder.</p>
+
+  <h2 id="online">Playing online</h2>
+  <!-- Online video: <iframe src="https://www.youtube-nocookie.com/embed/ID" allowfullscreen></iframe> -->
+  <div class="media"></div>
+
+  <h3>1. Join a server</h3>
+  <p>In the <strong>Gioca</strong> (Play) tab, type your name plus the address and port the host gave you (default port <code>28022</code>), then press <strong>Entra</strong> (Join).</p>
+  <div class="media"><img src="media/launcher-gioca.png" alt="Launcher Play tab"></div>
+
+  <h3>2. Load a game</h3>
+  <p>PCSX2 starts on its own. Load a save or start a new game: you get connected once you are freely exploring the town.
+    The other players appear next to you.</p>
+
+  <h3>3. The online menu</h3>
+  <p>In game, <strong>R3 + UP</strong> opens the online menu: UP/DOWN to choose, RIGHT to confirm.
+    From here you can disconnect without closing the game. Leaving the game also disconnects you.</p>
+
+  <h3>4. Leaving</h3>
+  <p><strong>Disconnetti</strong> (Disconnect), in the launcher or in the R3 + UP menu, closes the connection cleanly. The game stays open and <strong>Entra</strong> reuses it.</p>
+
+  <h2 id="host">Hosting a game</h2>
+  <ol>
+    <li>In the <strong>Gioca</strong> (Play) tab press <strong>Ospita e gioca</strong> (Host and play): the launcher starts the server and joins it.
+      Host settings (feathers, unlocks, day and night, passers-by, players) are in the R3 + UP menu during the game.</li>
+    <li>The <strong>Server</strong> tab shows the status and the connected players. <strong>Avvia solo server</strong> (Start server only) works even without the game;
+      <strong>Nuova campagna</strong> (New campaign) restarts the shared missions from scratch.</li>
+    <li>Give your friends your computer's address:
+      <ul>
+        <li><strong>Same home network:</strong> the local address (for example <code>192.168.1.20</code>).</li>
+        <li><strong>Over the Internet:</strong> a group VPN (for example Tailscale or ZeroTier), or TCP port <code>28022</code> forwarded from your router to your PC.</li>
+      </ul>
+    </li>
+  </ol>
+  <div class="media"><img src="media/launcher-server.png" alt="Launcher Server tab"></div>
+  <p>Two players on the same computer? <strong>Nuova sessione</strong> (New session) opens a second launcher with its own PCSX2 and profile.
+    The <strong>Istanza PCSX2</strong> (PCSX2 instance) menu attaches a PCSX2 window that is already open.</p>
+
+  <h2 id="trouble">If something goes wrong</h2>
+  <ul>
+    <li><strong>Apri registro</strong> (Open log) shows the session log: send it along when you report a bug.</li>
+    <li>After a crash or a forced shutdown, restart PCSX2 before joining again.</li>
+    <li>Friends can't join? Check the address, port and VPN, or the forwarding of port 28022.</li>
+  </ul>
+</main>
+<footer>Unofficial fan project. No game files are distributed.</footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game engine — Sitting Ducks Online</title>
+<link rel="alternate" hreflang="it" href="it/engine.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html">Online</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="engine.html" aria-current="page">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#support">Support</a>
+    <a class="lang" href="it/engine.html" lang="it" hreflang="it">IT</a>
+  </nav>
+</header>
+<main>
+  <h1>Game engine</h1>
+  <p class="lead">What we found inside <em>Sitting Ducks</em> for PS2 and how we use it. Addresses refer to the European ELF
+    <code>SLES_521.16</code> (game v1.19); fields such as <code>+0x334</code> are offsets inside the object.</p>
+  <p><span class="tag ok">verified</span> = tested in game · <span class="tag wip">code</span> = read in the decompiled code, not yet tested in game.</p>
+
+  <nav class="card toc" aria-label="Contents">
+    <ul>
+      <li><a href="#method">Method and tools</a></li>
+      <li><a href="#files">File formats</a></li>
+      <li><a href="#memory">Memory and handles</a></li>
+      <li><a href="#classes">Classes and vtables</a></li>
+      <li><a href="#creatures">Creatures and states</a></li>
+      <li><a href="#input">Pad input</a></li>
+      <li><a href="#vehicles">Vehicles and traffic</a></li>
+      <li><a href="#data">Game data</a></li>
+      <li><a href="#animations">Animations</a></li>
+      <li><a href="#world">World: fog, streaming, areas</a></li>
+      <li><a href="#missions">Missions, cutscenes and menus</a></li>
+      <li><a href="#saves">Saves</a></li>
+      <li><a href="#hooks">How we add code</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="method">Method and tools</h2>
+  <ul>
+    <li><strong>Engine:</strong> Zouna by Asobo Studio, the same engine as other Asobo games of the period. Symbols were stripped from the ELF,
+      but class names remain (<code>PlayerMove_Z</code>, <code>VehiculeMove_Z</code>…).</li>
+    <li><strong>Ghidra</strong> with the Emotion Engine extension: 5,436 functions, all decompiled into one searchable file.</li>
+    <li><strong>PINE</strong> from PCSX2 to read and write RAM live, with our own client.</li>
+    <li><strong>RAM snapshots</strong> before and after an event (a feather picked up, a turn), compared to find the field that changes.</li>
+    <li>Python tools to read and rewrite <code>.DPC</code>/<code>.DPS</code> containers byte for byte, scale meshes and replace files in the ISO.</li>
+  </ul>
+
+  <h2 id="files">File formats</h2>
+  <table>
+    <tr><th>What</th><th>Structure</th></tr>
+    <tr><td>DPC/DPS containers</td><td>0x800 header (block size at 0x100), fixed blocks: count + resources [size, class CRC, name CRC…], 0xCD padding</td></tr>
+    <tr><td>Resource classes</td><td><code>Mesh_Z</code> ad3c6563, <code>Skin_Z</code> accc13d1, <code>Lod_Z</code> fe97bcec (Lod → Skin)</td></tr>
+    <tr><td>PS2 geometry</td><td><code>Mesh_Z</code> holds only the header; vertices live in the <code>Skin_Z</code> as DMA/VIF <code>UNPACK V4-32</code> packets, 4 qwords per vertex (weights, flags, position, normal).
+      Strip index lists are mixed in and must not be scaled: that was the cause of the "stretched" models.</td></tr>
+    <tr><td>Names</td><td>CRC32 hash with its own character table (function <code>0x251E00</code>)</td></tr>
+    <tr><td>Scripts</td><td>plain-text <code>.TSC</code> files (<code>INIT.TSC</code>, <code>EVENTS.TSC</code>, <code>MPARAM.TSC</code>…); 130 commands registered by <code>0x2EB1D0</code></td></tr>
+  </table>
+
+  <h2 id="memory">Memory and handles</h2>
+  <ul>
+    <li><code>gp = 0x0046F3F0</code>.</li>
+    <li>Handle table: <code>*(0x4680FC)+4</code>, 16-byte entries [generation, refcount, pointer]. Handle = <code>index&lt;&lt;8 | gen</code>;
+      <code>0x345070</code> resolves it, <code>0x251880</code> changes the refcount (at 0 the object is freed). <span class="tag ok">verified</span></li>
+    <li>Free RAM for our code: <code>0x98000–0x200000</code>, always zero in the original game.</li>
+    <li>Golden rule: never rewrite a 4 KB page holding code that has already run, or PCSX2's recompiler shuts down. New code goes into pages that have never run, and data into separate pages.</li>
+  </ul>
+
+  <h2 id="classes">Classes and vtables</h2>
+  <table>
+    <tr><th>Class</th><th>vtable</th><th>Notes</th></tr>
+    <tr><td><code>PlayerMove_Z</code></td><td>0x45CCD0</td><td>Bill/Aldo player; update <code>0x20EA70</code></td></tr>
+    <tr><td><code>AnonymMove_Z</code></td><td>0x464A50</td><td>passer-by; update <code>0x3AE900</code></td></tr>
+    <tr><td><code>AnonymMgr_Z</code></td><td>0x464D80</td><td>traffic manager</td></tr>
+    <tr><td><code>V_VESPA</code></td><td>0x464900</td><td>scooter; subclasses V_VESPA02–05</td></tr>
+    <tr><td><code>V_VOITURE</code></td><td>0x45D8C0</td><td>traffic car (our van too)</td></tr>
+    <tr><td><code>V_SKATE</code></td><td>0x464270</td><td>skateboard</td></tr>
+    <tr><td><code>MenuInGameDatas_Z</code></td><td>0x466BE0</td><td>in-game menu and mission end screens</td></tr>
+    <tr><td><code>LevelAgent_Z</code></td><td>0x45DF70</td><td>mission logic (target at <code>+0x1F4</code>)</td></tr>
+  </table>
+  <p>Hierarchy: <code>LodMove_Z &gt; CreaturesMove_Z &gt; {AnonymMove_Z, FriendsMove_Z &gt; PlayerMove_Z}</code>; <code>LodMove_Z &gt; VehiculeMove_Z &gt; V_DUCK_Move_Z</code>.</p>
+
+  <h2 id="creatures">Creatures and states</h2>
+  <table>
+    <tr><th>Field</th><th>Meaning</th></tr>
+    <tr><td><code>+0x220</code></td><td>handle of the vehicle being driven</td></tr>
+    <tr><td><code>+0x334</code></td><td>state (0xD getting on, 0xF/0x10 driving, 8 flying, 10–12 swimming, 0x14 falling, 0x1C run over)</td></tr>
+    <tr><td><code>+0x420</code></td><td>position</td></tr>
+    <tr><td><code>+0xB50</code></td><td>current action; writing 0x10 with the handle in <code>+0x390</code> gets the creature on a vehicle <span class="tag ok">verified</span></td></tr>
+    <tr><td><code>+0xB6C</code></td><td>character (cache filled by <code>0x36A5C0</code>)</td></tr>
+    <tr><td><code>+0xB24/+0xB28</code></td><td>roll and pitch in turns</td></tr>
+  </table>
+  <p>State handlers sit in a table at <code>0x4495E0</code> (49 entries, index = state), called by <code>0x392180</code>.
+    GET ON = <code>0x369610</code>, GET OFF = <code>0x368A90</code>. Actions: 9 skateboard, 0xA–0xC planes, 0x10 scooter, 0x11–0x14 motorbikes, 0x15 Raoul.</p>
+
+  <h2 id="input">Pad input</h2>
+  <p><code>Input_Z</code> row <span class="tag ok">verified</span>: <code>+1C</code> Triangle, <code>+1E</code> X, <code>+20</code> L3, <code>+21</code> R3,
+    <code>+22/+25</code> up/down, <code>+23/+24</code> right/left, <code>+28</code> L1, <code>+29</code> R1. Select can only be read from the raw pad at <code>0x476BC2</code>, bit 1.</p>
+
+  <h2 id="vehicles">Vehicles and traffic</h2>
+  <ul>
+    <li>Global vehicle list: count <code>*(0x467940)&gt;&gt;14</code>, array <code>*(0x467944)</code>. Object: <code>+0x71</code> 1 = player's, <code>+0x78</code> type.</li>
+    <li>The traffic manager has 0x28-byte entries: <code>+0xC</code> owner, <code>+0x24</code> in use. Clearing the owner stops the stolen vehicle
+      from being recycled. <span class="tag ok">verified</span></li>
+    <li>Recycling: after more than 2 s out of view (<code>passer-by+0xBF0</code>), in the loop at <code>0x3B2B00</code>; passers-by spawn in <code>0x3B01A0</code>.</li>
+    <li>Deterministic spawning: the same point and the same random generator state (<code>0x46783C</code>/<code>0x478200</code>) give the same passer-by. This is the basis of shared online traffic.</li>
+    <li>NOS: the vehicle's <code>SPEED +B0</code>/<code>ACCEL +A0</code>, fuel at <code>+7C</code>.</li>
+  </ul>
+
+  <h2 id="data">Game data</h2>
+  <p><code>GlobalInGameDatas</code> = <code>*(0x468108)</code>, GID for short.</p>
+  <table>
+    <tr><td><code>GID+0x1C4C</code></td><td>feather count (writing it also updates the HUD) <span class="tag ok">verified</span></td></tr>
+    <tr><td><code>GID+0x1C5C</code></td><td>inventory/unlocks, 0x24-byte entries: owned, name, description, tab, icon</td></tr>
+    <tr><td><code>GID+0x1A8C/+0x1A90</code></td><td>mission markers on radar and map</td></tr>
+    <tr><td><code>GID+0x1A70</code></td><td>maximum distance from the target during a mission</td></tr>
+    <tr><td><code>0x467958</code></td><td>AnonymPause: hides all passers-by</td></tr>
+  </table>
+
+  <h2 id="animations">Animations</h2>
+  <p>An animation id is translated into an <code>Animation_Z</code> through a hash map (<code>0x268910</code>); <code>0x3936A0</code> starts it.
+    Each track holds a bone and rotation keys (12-bit quaternions). Tracks with a single key are fixed poses.
+    Animations are shared by every character: to keep a single crocodile's mouth open we use a private copy.</p>
+
+  <h2 id="world">World: fog, streaming, areas</h2>
+  <ul>
+    <li>Fog: <code>HFog_Z +0xF8</code> = fog-free radius; with 2 players we raise it to 2000.</li>
+    <li>The graphics queue alternates two buffers per frame. With too many objects its tail overflows and VIF1 hangs: that was the co-op "freeze".</li>
+    <li>Closed areas: the barriers are objects hidden by <code>CACHE_DECOR</code> events; <code>0x2A5530</code> hides a node, <code>0x2A5640</code> shows it.</li>
+    <li>Sub-levels: <code>REquestSubLevel</code> fails if the area is already in memory. Online we keep it always loaded, so a guard fixes it (that was the black screen after the mission 12 cutscene).</li>
+  </ul>
+
+  <h2 id="missions">Missions, cutscenes and menus</h2>
+  <ul>
+    <li>Cutscenes (<code>RtcScripted_Z</code>, update <code>0x3C8380</code>) are skipped on the edge of a pad byte: we redirect it so a skip counts for everyone.</li>
+    <li>Mission end screens are menu pages (update <code>0x3EA6A0</code>): results, failed (Retry/Continue), Save/Continue.</li>
+    <li>Moving away from the target fails the mission: the check is in <code>0x3D37A0</code>.</li>
+  </ul>
+
+  <h2 id="saves">Saves</h2>
+  <p>16 KB block: data, a version byte at <code>0x3FFB</code> (the European release expects 100) and a CRC32 at <code>0x3FFC</code> computed by <code>0x251E70</code>.
+    US saves can be converted to European ones by changing the version and the CRC. <span class="tag ok">verified</span></p>
+
+  <h2 id="hooks">How we add code</h2>
+  <p>Our MIPS code (written with a small Python assembler) gets into the game through PCSX2 PNACH patches, in free RAM.
+    It hooks into chains of functions called every frame (the traffic update at <code>0x464DAC</code>, the HUD at <code>0x464DF4</code>),
+    or replaces a vtable entry with a wrapper that calls the original. Each function has its own code page and its own data page.</p>
+
+  <p class="card"><small>This page summarises the project's research notes. Each entry has its evidence, limits and history in the working documents.</small></p>
+</main>
+<footer>Unofficial fan project. No game files are distributed.</footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online — Sitting Ducks Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html" aria-current="page">Online</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="engine.html">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#supporta">Supporta</a>
+    <a class="lang" href="../online.html" lang="en" hreflang="en">EN</a>
+  </nav>
+</header>
+<main>
+  <h1>Online</h1>
+  <p class="lead">Il gioco per PS2 non è mai stato pensato per la rete. Ecco come lo facciamo funzionare, come si gioca e cosa manca ancora.</p>
+
+  <nav class="card toc" aria-label="Indice">
+    <ul>
+      <li><a href="#come">Come funziona</a></li>
+      <li><a href="#giocare">Come giocare e ospitare</a></li>
+      <li><a href="#regole">Regole della partita</a></li>
+      <li><a href="#limiti">Limiti attuali</a></li>
+      <li><a href="#minigiochi">Minigiochi (futuri)</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="come">Come funziona</h2>
+  <div class="card">
+    <p>Ogni giocatore ha il suo PCSX2 con il gioco. Un piccolo programma accanto all'emulatore (il client) legge e scrive
+      la memoria del gioco attraverso PINE, l'interfaccia di PCSX2 per i programmi esterni. Il client parla con un server TCP.</p>
+    <p><code>PCSX2 + gioco ⇄ PINE ⇄ client ⇄ TCP ⇄ server ⇄ altri client</code></p>
+    <p>Nel gioco di ognuno, il proprio personaggio (P1) è l'unica autorità: piume, sblocchi e profilo sono suoi.
+      Gli altri giocatori sono "burattini": personaggi nativi del gioco mossi dal client con i dati che arrivano
+      dalla rete, a 30 aggiornamenti al secondo, con 100 ms di interpolazione per renderli fluidi.</p>
+    <p>All'ingresso, la mappa della città viene precaricata per intero, così tutti hanno sempre le stesse zone in memoria.
+      Il traffico nasce dagli stessi punti e con lo stesso generatore casuale: per questo civili e mezzi coincidono in tutti i client.</p>
+  </div>
+  <div class="media"></div>
+
+  <h2 id="giocare">Come giocare e ospitare</h2>
+  <p class="card">Passo per passo, con le immagini del launcher: <a href="tutorial.html#online">Tutorial → Giocare online</a>.
+    In breve: <strong>Entra</strong> per collegarti a un server, <strong>Ospita e gioca</strong> per crearne uno (porta TCP <code>28022</code>),
+    <strong>R3 + SU</strong> nel gioco per il menu online.</p>
+
+  <h2 id="regole">Regole della partita</h2>
+  <ul>
+    <li><strong>Missioni:</strong> chi avvia viene portato al via, poi tocca agli altri. Se uno vince, vincono tutti.
+      Durante la missione, chi si allontana troppo o si scollega fa perdere tutti.</li>
+    <li><strong>Scene e schermate finali:</strong> saltare o confermare vale per tutti. Online il salvataggio viene sempre saltato.</li>
+    <li><strong>Piume perse:</strong> sono di chi le raccoglie per primo, anche se erano di un altro.</li>
+    <li><strong>Mezzi:</strong> un mezzo è uno solo per tutti. Se lo prendi tu, gli altri ti vedono alla guida.</li>
+  </ul>
+
+  <h2 id="limiti">Limiti attuali</h2>
+  <ul>
+    <li>Il gioco ha 4 slot nativi per i giocatori: con 5 o più alcuni edifici non vengono disegnati. Il server accetta fino a 20 connessioni.</li>
+    <li>Diverse parti del client gestiscono ancora un solo giocatore remoto. Il lavoro per arrivare a 4 è in corso.</li>
+    <li>Il manubrio degli scooter guidati da altri non gira.</li>
+    <li>Il cambio Bill / Aldo dei giocatori remoti è in prova.</li>
+    <li>La versione Windows non è ancora stata provata su un PC Windows vero.</li>
+    <li>Dopo un crash o una chiusura forzata va riavviato PCSX2 prima di rientrare.</li>
+  </ul>
+
+  <h2 id="minigiochi">Minigiochi <span class="tag plan">futuro</span></h2>
+  <p>Il gioco contiene già dei minigiochi. L'idea è renderli giocabili tra più giocatori.
+    Quando ci saranno, troverai qui regole e video.</p>
+  <div class="media"></div>
+</main>
+<footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
+</body>
+</html>

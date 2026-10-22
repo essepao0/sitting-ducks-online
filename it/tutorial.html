@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorial — Sitting Ducks Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html">Online</a>
+    <a href="tutorial.html" aria-current="page">Tutorial</a>
+    <a href="engine.html">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#supporta">Supporta</a>
+    <a class="lang" href="../tutorial.html" lang="en" hreflang="en">EN</a>
+  </nav>
+</header>
+<main>
+  <h1>Tutorial</h1>
+  <p class="lead">Dall'installazione alla prima partita online.</p>
+
+  <nav class="card toc" aria-label="Indice">
+    <ul>
+      <li><a href="#installazione">Installare la mod</a></li>
+      <li><a href="#online">Giocare online</a></li>
+      <li><a href="#ospitare">Ospitare una partita</a></li>
+      <li><a href="#problemi">Se qualcosa non va</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="installazione">Installare la mod</h2>
+  <!-- Video tutorial installazione: <iframe src="https://www.youtube-nocookie.com/embed/ID" allowfullscreen></iframe> -->
+  <div class="media"></div>
+
+  <h3>1. Cosa serve</h3>
+  <ul>
+    <li><a href="https://pcsx2.net/">PCSX2</a> (provato con la v2.9).</li>
+    <li>La tua copia di <em>Sitting Ducks</em> per PS2, <strong>versione europea SLES-52116</strong>, in ISO. Il launcher vuole la ISO modificata
+      (furgone e avvio senza loghi): lo strumento che la ricava dalla tua copia è in preparazione.</li>
+    <li>Il BIOS della tua PS2.</li>
+  </ul>
+  <p>Non distribuiamo il gioco, il BIOS o i file estratti.</p>
+
+  <h3>2. Scarica e apri il launcher</h3>
+  <ul>
+    <li><strong>macOS:</strong> scarica <code>Sitting-Ducks-Online-macOS-arm64.zip</code> dalla pagina <a href="releases.html">Releases</a>, estrailo e apri
+      <strong>Sitting Ducks Online.app</strong>. La prima volta usa tasto destro → Apri, perché l'app non è firmata.</li>
+    <li><strong>Windows:</strong> estrai <strong>tutta</strong> la cartella dello zip, non solo il <code>.exe</code>, e apri <strong>Sitting Ducks Online.exe</strong>.
+      Dai sorgenti, <code>gioca_online.bat</code> scarica e verifica Python da solo al primo avvio.</li>
+  </ul>
+
+  <h3>3. Configurazione</h3>
+  <p>Apri la scheda <strong>Configurazione</strong>, scegli con <strong>Scegli…</strong> PCSX2 (su Mac il bundle <code>.app</code>), la ISO e il BIOS, poi premi
+    <strong>Salva configurazione</strong>. Il launcher imposta da solo memoria, patch e collegamento con il gioco.</p>
+  <div class="media"><img src="../media/launcher-configurazione.png" alt="Scheda Configurazione del launcher"></div>
+
+  <h3>4. Pronto</h3>
+  <p>Nella scheda <strong>Gioca</strong> compare «Pronto.». Nome, indirizzo e percorsi restano salvati per le volte successive.
+    I dati del launcher sono in <code>~/Library/Application Support/Sitting Ducks Online/</code> (Mac) e in <code>%LOCALAPPDATA%\Sitting Ducks Online\</code> (Windows):
+    il pulsante <strong>Apri dati</strong> apre la cartella.</p>
+
+  <h2 id="online">Giocare online</h2>
+  <!-- Video tutorial online: <iframe src="https://www.youtube-nocookie.com/embed/ID" allowfullscreen></iframe> -->
+  <div class="media"></div>
+
+  <h3>1. Entra in un server</h3>
+  <p>Nella scheda <strong>Gioca</strong> scrivi il tuo nome e l'indirizzo e la porta che ti ha dato chi ospita (porta predefinita <code>28022</code>), poi premi <strong>Entra</strong>.</p>
+  <div class="media"><img src="../media/launcher-gioca.png" alt="Scheda Gioca del launcher"></div>
+
+  <h3>2. Carica una partita</h3>
+  <p>PCSX2 parte da solo. Carica un salvataggio o inizia una nuova partita: il collegamento avviene quando sei in esplorazione libera per la città.
+    Gli altri giocatori compaiono accanto a te.</p>
+
+  <h3>3. Il menu online</h3>
+  <p>Durante il gioco <strong>R3 + SU</strong> apre il menu online: SU/GIÙ per scegliere, DESTRA per confermare.
+    Da qui ti scolleghi senza chiudere il gioco. Anche uscire dalla partita ti scollega.</p>
+
+  <h3>4. Uscire</h3>
+  <p><strong>Disconnetti</strong> (nel launcher o nel menu R3 + SU) chiude il collegamento in modo pulito. Il gioco resta aperto e <strong>Entra</strong> lo riutilizza.</p>
+
+  <h2 id="ospitare">Ospitare una partita</h2>
+  <ol>
+    <li>Nella scheda <strong>Gioca</strong> premi <strong>Ospita e gioca</strong>: il launcher avvia il server e ti fa entrare.
+      Le impostazioni di chi ospita (piume, sblocchi, giorno e notte, civili, giocatori) sono nel menu R3 + SU durante la partita.</li>
+    <li>Nella scheda <strong>Server</strong> vedi lo stato e i giocatori collegati. <strong>Avvia solo server</strong> funziona anche senza gioco;
+      <strong>Nuova campagna</strong> fa ripartire da zero le missioni condivise.</li>
+    <li>Dai agli amici l'indirizzo del tuo computer:
+      <ul>
+        <li><strong>Stessa rete di casa:</strong> l'indirizzo locale (per esempio <code>192.168.1.20</code>).</li>
+        <li><strong>Su Internet:</strong> una VPN di gruppo (per esempio Tailscale o ZeroTier) oppure la porta TCP <code>28022</code> inoltrata dal router al tuo PC.</li>
+      </ul>
+    </li>
+  </ol>
+  <div class="media"><img src="../media/launcher-server.png" alt="Scheda Server del launcher"></div>
+  <p>Vuoi due giocatori sullo stesso computer? <strong>Nuova sessione</strong> apre un secondo launcher con il suo PCSX2 e il suo profilo.
+    Il menu <strong>Istanza PCSX2</strong> collega una finestra di PCSX2 già aperta.</p>
+
+  <h2 id="problemi">Se qualcosa non va</h2>
+  <ul>
+    <li><strong>Apri registro</strong> mostra il registro della sessione: mandalo quando segnali un bug.</li>
+    <li>Dopo un crash o una chiusura forzata, riavvia PCSX2 prima di rientrare.</li>
+    <li>Gli amici non riescono a entrare? Controlla indirizzo, porta e VPN, oppure l'inoltro della porta 28022.</li>
+  </ul>
+</main>
+<footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
+</body>
+</html>

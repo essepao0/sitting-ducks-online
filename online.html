@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online — Sitting Ducks Online</title>
+<link rel="alternate" hreflang="it" href="it/online.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html" aria-current="page">Online</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="engine.html">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#support">Support</a>
+    <a class="lang" href="it/online.html" lang="it" hreflang="it">IT</a>
+  </nav>
+</header>
+<main>
+  <h1>Online</h1>
+  <p class="lead">The PS2 game was never designed for networking. Here is how we make it work, how to play and what is still missing.</p>
+
+  <nav class="card toc" aria-label="Contents">
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#play">How to play and host</a></li>
+      <li><a href="#rules">Game rules</a></li>
+      <li><a href="#limits">Current limits</a></li>
+      <li><a href="#minigames">Minigames (planned)</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="how">How it works</h2>
+  <div class="card">
+    <p>Each player runs their own PCSX2 with the game. A small program next to the emulator (the client) reads and writes the game's memory
+      through PINE, PCSX2's interface for external programs. The client talks to a TCP server.</p>
+    <p><code>PCSX2 + game ⇄ PINE ⇄ client ⇄ TCP ⇄ server ⇄ other clients</code></p>
+    <p>In each player's game, their own character (P1) is the only authority: feathers, unlocks and profile belong to them.
+      The other players are "puppets": native game characters moved by the client with the data coming from the network,
+      30 times a second, with 100 ms of interpolation to keep them smooth.</p>
+    <p>When you join, the whole town map is preloaded, so everyone always has the same areas in memory. Traffic spawns from the same points
+      with the same random generator, which is why people and vehicles match in every client.</p>
+  </div>
+  <div class="media"></div>
+
+  <h2 id="play">How to play and host</h2>
+  <p class="card">Step by step, with launcher screenshots: <a href="tutorial.html#online">Tutorial → Playing online</a>.
+    In short: <strong>Entra</strong> (Join) connects you to a server, <strong>Ospita e gioca</strong> (Host and play) creates one (TCP port <code>28022</code>),
+    and <strong>R3 + UP</strong> in game opens the online menu.</p>
+
+  <h2 id="rules">Game rules</h2>
+  <ul>
+    <li><strong>Missions:</strong> whoever starts the mission is brought to the start first, then the others. If one player wins, everyone wins.
+      During the mission, a player who strays too far or disconnects makes everyone lose.</li>
+    <li><strong>Cutscenes and end screens:</strong> skipping or confirming counts for everyone. Saving is always skipped online.</li>
+    <li><strong>Dropped feathers:</strong> they belong to whoever picks them up first, even if they were someone else's.</li>
+    <li><strong>Vehicles:</strong> a vehicle is one and the same for everyone. If you take it, the others see you driving.</li>
+  </ul>
+
+  <h2 id="limits">Current limits</h2>
+  <ul>
+    <li>The game has 4 native player slots: with 5 or more, some buildings are not drawn. The server accepts up to 20 connections.</li>
+    <li>Several parts of the client still handle only one remote player. Work to reach 4 is under way.</li>
+    <li>The handlebars of scooters driven by other players don't turn.</li>
+    <li>Switching Bill / Aldo for remote players is being tested.</li>
+    <li>The Windows version hasn't been tested on a real Windows PC yet.</li>
+    <li>After a crash or a forced shutdown, restart PCSX2 before joining again.</li>
+  </ul>
+
+  <h2 id="minigames">Minigames <span class="tag plan">planned</span></h2>
+  <p>The game already has minigames. The idea is to make them playable with several players. When they're ready, you'll find rules and videos here.</p>
+  <div class="media"></div>
+</main>
+<footer>Unofficial fan project. No game files are distributed.</footer>
+</body>
+</html>

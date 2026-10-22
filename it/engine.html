@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game engine — Sitting Ducks Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Sitting Ducks Online</a>
+  <nav>
+    <a href="index.html">Showcase</a>
+    <a href="features.html">Features</a>
+    <a href="online.html">Online</a>
+    <a href="tutorial.html">Tutorial</a>
+    <a href="engine.html" aria-current="page">Game engine</a>
+    <a href="releases.html">Releases</a>
+    <a href="index.html#supporta">Supporta</a>
+    <a class="lang" href="../engine.html" lang="en" hreflang="en">EN</a>
+  </nav>
+</header>
+<main>
+  <h1>Game engine</h1>
+  <p class="lead">Cosa abbiamo scoperto dentro <em>Sitting Ducks</em> per PS2 e come lo usiamo. Gli indirizzi sono dell'ELF europeo
+    <code>SLES_521.16</code> (gioco v1.19); i campi tipo <code>+0x334</code> sono spostamenti dentro l'oggetto.</p>
+  <p><span class="tag ok">verificato</span> = provato nel gioco · <span class="tag wip">codice</span> = letto nel codice decompilato, non ancora provato in gioco.</p>
+
+  <nav class="card toc" aria-label="Indice">
+    <ul>
+      <li><a href="#metodo">Metodo e strumenti</a></li>
+      <li><a href="#file">Formati dei file</a></li>
+      <li><a href="#memoria">Memoria e handle</a></li>
+      <li><a href="#classi">Classi e vtable</a></li>
+      <li><a href="#creature">Creature e stati</a></li>
+      <li><a href="#input">Comandi del pad</a></li>
+      <li><a href="#veicoli">Veicoli e traffico</a></li>
+      <li><a href="#dati">Dati di partita</a></li>
+      <li><a href="#animazioni">Animazioni</a></li>
+      <li><a href="#mondo">Mondo: nebbia, streaming, aree</a></li>
+      <li><a href="#missioni">Missioni, scene e menu</a></li>
+      <li><a href="#salvataggi">Salvataggi</a></li>
+      <li><a href="#agganci">Come aggiungiamo codice</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="metodo">Metodo e strumenti</h2>
+  <ul>
+    <li><strong>Motore:</strong> Zouna di Asobo Studio, lo stesso di altri giochi Asobo dell'epoca. Nell'ELF i simboli sono stati rimossi,
+      ma restano i nomi delle classi (<code>PlayerMove_Z</code>, <code>VehiculeMove_Z</code>…).</li>
+    <li><strong>Ghidra</strong> con l'estensione Emotion Engine: 5436 funzioni, tutte decompilate in un unico file in cui si può cercare.</li>
+    <li><strong>PINE</strong> di PCSX2 per leggere e scrivere la RAM dal vivo, con un client nostro.</li>
+    <li><strong>Istantanee della RAM</strong> prima e dopo un evento (una piuma presa, una curva), confrontate per trovare il campo che cambia.</li>
+    <li>Strumenti Python per leggere e riscrivere i container <code>.DPC</code>/<code>.DPS</code> byte per byte, scalare mesh e sostituire file nella ISO.</li>
+  </ul>
+
+  <h2 id="file">Formati dei file</h2>
+  <table>
+    <tr><th>Cosa</th><th>Struttura</th></tr>
+    <tr><td>Container DPC/DPS</td><td>intestazione 0x800 (dimensione blocco a 0x100), blocchi fissi: conteggio + risorse [size, CRC classe, CRC nome…], riempimento 0xCD</td></tr>
+    <tr><td>Classi risorsa</td><td><code>Mesh_Z</code> ad3c6563, <code>Skin_Z</code> accc13d1, <code>Lod_Z</code> fe97bcec (Lod → Skin)</td></tr>
+    <tr><td>Geometria PS2</td><td><code>Mesh_Z</code> contiene solo l'intestazione; i vertici sono nello <code>Skin_Z</code> come pacchetti DMA/VIF <code>UNPACK V4-32</code>, 4 qword per vertice (pesi, flag, posizione, normale). In mezzo ci sono liste di indici delle strip, da non scalare: era la causa dei modelli "stirati".</td></tr>
+    <tr><td>Nomi</td><td>hash CRC32 con tabella di caratteri propria (funzione <code>0x251E00</code>)</td></tr>
+    <tr><td>Script</td><td>file <code>.TSC</code> in chiaro (<code>INIT.TSC</code>, <code>EVENTS.TSC</code>, <code>MPARAM.TSC</code>…); 130 comandi registrati da <code>0x2EB1D0</code></td></tr>
+  </table>
+
+  <h2 id="memoria">Memoria e handle</h2>
+  <ul>
+    <li><code>gp = 0x0046F3F0</code>.</li>
+    <li>Tabella degli handle: <code>*(0x4680FC)+4</code>, voci da 16 byte [generazione, refcount, puntatore]. Handle = <code>indice&lt;&lt;8 | gen</code>;
+      <code>0x345070</code> lo risolve, <code>0x251880</code> cambia il refcount (a 0 l'oggetto viene liberato). <span class="tag ok">verificato</span></li>
+    <li>RAM libera per il nostro codice: <code>0x98000–0x200000</code>, sempre a zero nel gioco originale.</li>
+    <li>Regola d'oro: mai riscrivere una pagina da 4 KB che contiene codice già eseguito, perché il ricompilatore di PCSX2 si chiude. Il codice nuovo va in pagine mai eseguite e i dati in pagine separate.</li>
+  </ul>
+
+  <h2 id="classi">Classi e vtable</h2>
+  <table>
+    <tr><th>Classe</th><th>vtable</th><th>Note</th></tr>
+    <tr><td><code>PlayerMove_Z</code></td><td>0x45CCD0</td><td>Bill/Aldo giocatore; update <code>0x20EA70</code></td></tr>
+    <tr><td><code>AnonymMove_Z</code></td><td>0x464A50</td><td>civile; update <code>0x3AE900</code></td></tr>
+    <tr><td><code>AnonymMgr_Z</code></td><td>0x464D80</td><td>gestore del traffico</td></tr>
+    <tr><td><code>V_VESPA</code></td><td>0x464900</td><td>scooter; derivate V_VESPA02–05</td></tr>
+    <tr><td><code>V_VOITURE</code></td><td>0x45D8C0</td><td>auto del traffico (anche il nostro furgone)</td></tr>
+    <tr><td><code>V_SKATE</code></td><td>0x464270</td><td>skate</td></tr>
+    <tr><td><code>MenuInGameDatas_Z</code></td><td>0x466BE0</td><td>menu in gioco e schermate di fine missione</td></tr>
+    <tr><td><code>LevelAgent_Z</code></td><td>0x45DF70</td><td>logica della missione (bersaglio <code>+0x1F4</code>)</td></tr>
+  </table>
+  <p>Gerarchia: <code>LodMove_Z &gt; CreaturesMove_Z &gt; {AnonymMove_Z, FriendsMove_Z &gt; PlayerMove_Z}</code>; <code>LodMove_Z &gt; VehiculeMove_Z &gt; V_DUCK_Move_Z</code>.</p>
+
+  <h2 id="creature">Creature e stati</h2>
+  <table>
+    <tr><th>Campo</th><th>Significato</th></tr>
+    <tr><td><code>+0x220</code></td><td>handle del veicolo guidato</td></tr>
+    <tr><td><code>+0x334</code></td><td>stato (0xD salita, 0xF/0x10 guida, 8 volo, 10–12 nuoto, 0x14 caduta, 0x1C investito)</td></tr>
+    <tr><td><code>+0x420</code></td><td>posizione</td></tr>
+    <tr><td><code>+0xB50</code></td><td>azione corrente; scriverci 0x10 con l'handle in <code>+0x390</code> fa salire su un veicolo <span class="tag ok">verificato</span></td></tr>
+    <tr><td><code>+0xB6C</code></td><td>personaggio (cache riempita da <code>0x36A5C0</code>)</td></tr>
+    <tr><td><code>+0xB24/+0xB28</code></td><td>rollio e beccheggio in curva</td></tr>
+  </table>
+  <p>I gestori degli stati sono in una tabella a <code>0x4495E0</code> (49 voci, indice = stato), chiamati da <code>0x392180</code>.
+    SALI = <code>0x369610</code>, SCENDI = <code>0x368A90</code>. Le azioni: 9 skate, 0xA–0xC aerei, 0x10 scooter, 0x11–0x14 moto, 0x15 Raoul.</p>
+
+  <h2 id="input">Comandi del pad</h2>
+  <p>Riga <code>Input_Z</code> <span class="tag ok">verificato</span>: <code>+1C</code> Triangolo, <code>+1E</code> X, <code>+20</code> L3, <code>+21</code> R3,
+    <code>+22/+25</code> su/giù, <code>+23/+24</code> destra/sinistra, <code>+28</code> L1, <code>+29</code> R1. Select si legge solo dal pad grezzo <code>0x476BC2</code> bit 1.</p>
+
+  <h2 id="veicoli">Veicoli e traffico</h2>
+  <ul>
+    <li>Elenco globale dei veicoli: numero <code>*(0x467940)&gt;&gt;14</code>, array <code>*(0x467944)</code>. Oggetto: <code>+0x71</code> 1 = del giocatore, <code>+0x78</code> tipo.</li>
+    <li>Il gestore del traffico ha voci da 0x28 byte: <code>+0xC</code> proprietario, <code>+0x24</code> in uso. Azzerando il proprietario,
+      il mezzo rubato non viene più riciclato. <span class="tag ok">verificato</span></li>
+    <li>Riciclo: dopo più di 2 s fuori visuale (<code>civile+0xBF0</code>), nel ciclo <code>0x3B2B00</code>; generazione dei civili in <code>0x3B01A0</code>.</li>
+    <li>Generazione deterministica: stesso punto e stesso stato del generatore casuale (<code>0x46783C</code>/<code>0x478200</code>) danno lo stesso civile. È la base del traffico condiviso online.</li>
+    <li>NOS: <code>SPEED +B0</code>/<code>ACCEL +A0</code> del veicolo, benzina <code>+7C</code>.</li>
+  </ul>
+
+  <h2 id="dati">Dati di partita</h2>
+  <p><code>GlobalInGameDatas</code> = <code>*(0x468108)</code>, abbreviato GID.</p>
+  <table>
+    <tr><td><code>GID+0x1C4C</code></td><td>saldo piume (scriverlo aggiorna anche l'HUD) <span class="tag ok">verificato</span></td></tr>
+    <tr><td><code>GID+0x1C5C</code></td><td>inventario/sblocchi, voci 0x24: posseduto, nome, descrizione, scheda, icona</td></tr>
+    <tr><td><code>GID+0x1A8C/+0x1A90</code></td><td>segni delle missioni su radar e mappa</td></tr>
+    <tr><td><code>GID+0x1A70</code></td><td>distanza massima dal bersaglio durante la missione</td></tr>
+    <tr><td><code>0x467958</code></td><td>AnonymPause: nasconde tutti i civili</td></tr>
+  </table>
+
+  <h2 id="animazioni">Animazioni</h2>
+  <p>L'id dell'animazione si traduce in un <code>Animation_Z</code> attraverso una mappa di hash (<code>0x268910</code>); <code>0x3936A0</code> la fa partire.
+    Ogni traccia ha l'osso e le chiavi di rotazione (quaternioni a 12 bit). Le tracce con una sola chiave sono pose fisse.
+    Le animazioni sono condivise da tutti i personaggi: per tenere aperta la bocca di un solo coccodrillo ne usiamo una copia privata.</p>
+
+  <h2 id="mondo">Mondo: nebbia, streaming, aree</h2>
+  <ul>
+    <li>Nebbia: <code>HFog_Z +0xF8</code> = raggio senza nebbia; con 2 giocatori la portiamo a 2000.</li>
+    <li>La coda grafica ha due buffer alternati per frame. Con troppi oggetti la parte finale sfora e il VIF1 resta bloccato: era il "blocco" del co-op.</li>
+    <li>Aree chiuse: le transenne sono oggetti nascosti dagli eventi <code>CACHE_DECOR</code>; <code>0x2A5530</code> nasconde un nodo, <code>0x2A5640</code> lo mostra.</li>
+    <li>Sottolivelli: <code>REquestSubLevel</code> fallisce se la zona è già in memoria. Online la teniamo sempre caricata, quindi una guardia lo corregge (era il nero dopo la scena della missione 12).</li>
+  </ul>
+
+  <h2 id="missioni">Missioni, scene e menu</h2>
+  <ul>
+    <li>Le scene (<code>RtcScripted_Z</code>, update <code>0x3C8380</code>) si saltano sul fronte di un byte del pad: lo deviamo per far valere il salto per tutti.</li>
+    <li>Le schermate di fine missione sono pagine del menu (update <code>0x3EA6A0</code>): risultati, fallita (Riavvia/Continua), Salva/Continua.</li>
+    <li>Allontanarsi dal bersaglio fa fallire la missione: il controllo è in <code>0x3D37A0</code>.</li>
+  </ul>
+
+  <h2 id="salvataggi">Salvataggi</h2>
+  <p>Blocco da 16 KB: dati, byte di versione a <code>0x3FFB</code> (l'edizione europea vuole 100) e CRC32 a <code>0x3FFC</code> calcolato da <code>0x251E70</code>.
+    I salvataggi USA si convertono in europei cambiando versione e CRC. <span class="tag ok">verificato</span></p>
+
+  <h2 id="agganci">Come aggiungiamo codice</h2>
+  <p>Il nostro codice MIPS (scritto con un piccolo assemblatore in Python) entra nel gioco con le patch PNACH di PCSX2, nella RAM libera.
+    Si aggancia a catene di funzioni chiamate ogni frame (l'update del traffico a <code>0x464DAC</code>, l'HUD a <code>0x464DF4</code>)
+    oppure sostituendo una voce di vtable con un wrapper che chiama l'originale. Ogni funzione ha la sua pagina di codice e la sua pagina di dati.</p>
+
+  <p class="card"><small>Questa pagina riassume gli appunti di ricerca del progetto. Ogni voce ha prove, limiti e storico nei documenti di lavoro.</small></p>
+</main>
+<footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
+</body>
+</html>
