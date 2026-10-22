@@ -133,6 +133,13 @@
     Each track holds a bone and rotation keys (12-bit quaternions). Tracks with a single key are fixed poses.
     Animations are shared by every character: to keep a single crocodile's mouth open we use a private copy.</p>
 
+  <p><span class="tag wip">code</span> Remote chase, 22 October: state 24 (<code>RunScary</code>, <code>0x3A9100</code>)
+    selects clip <code>0x1E</code>, then recalculates movement at <code>0x3A937C</code> and writes playback speed through
+    <code>0x393870</code> (<code>PlayAnim+0x28</code>). Neutral puppet input can reduce that speed to zero even with the correct clip selected.
+    A live trace confirmed the correct clip with zero movement on the receiving client. The online movement hook now covers
+    chase as well as walking and running. Native-call regression checks pass;
+    visual confirmation in game is still pending.</p>
+
   <h2 id="world">World: fog, streaming, areas</h2>
   <ul>
     <li>Fog: <code>HFog_Z +0xF8</code> = fog-free radius; with 2 players we raise it to 2000.</li>
@@ -156,6 +163,8 @@
   <p>Our MIPS code (written with a small Python assembler) gets into the game through PCSX2 PNACH patches, in free RAM.
     It hooks into chains of functions called every frame (the traffic update at <code>0x464DAC</code>, the HUD at <code>0x464DF4</code>),
     or replaces a vtable entry with a wrapper that calls the original. Each function has its own code page and its own data page.</p>
+  <p><span class="tag wip">code</span> Packaging updates to the IOP audio protection now preserve later EE patches.
+    Previously the updater truncated everything after its own marker. Regression checks cover the chase hook in the complete package.</p>
 
   <p class="card"><small>This page summarises the project's research notes. Each entry has its evidence, limits and history in the working documents.</small></p>
 </main>

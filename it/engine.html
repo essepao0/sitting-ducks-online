@@ -131,6 +131,13 @@
     Ogni traccia ha l'osso e le chiavi di rotazione (quaternioni a 12 bit). Le tracce con una sola chiave sono pose fisse.
     Le animazioni sono condivise da tutti i personaggi: per tenere aperta la bocca di un solo coccodrillo ne usiamo una copia privata.</p>
 
+  <p><span class="tag wip">codice</span> Rincorsa remota, 22 ottobre: stato 24 (<code>RunScary</code>, <code>0x3A9100</code>)
+    seleziona la clip <code>0x1E</code>, poi ricalcola il movimento a <code>0x3A937C</code> e scrive la velocità di riproduzione tramite
+    <code>0x393870</code> (<code>PlayAnim+0x28</code>). Il controllo neutro del burattino può azzerarla anche con la clip corretta selezionata.
+    Una traccia live conferma clip corretta e movimento nullo nel client ricevente. L'aggancio online del movimento copre
+    ora la rincorsa oltre a cammino e corsa. Regressioni delle chiamate native superate;
+    conferma visiva nel gioco ancora pendente.</p>
+
   <h2 id="mondo">Mondo: nebbia, streaming, aree</h2>
   <ul>
     <li>Nebbia: <code>HFog_Z +0xF8</code> = raggio senza nebbia; con 2 giocatori la portiamo a 2000.</li>
@@ -154,6 +161,8 @@
   <p>Il nostro codice MIPS (scritto con un piccolo assemblatore in Python) entra nel gioco con le patch PNACH di PCSX2, nella RAM libera.
     Si aggancia a catene di funzioni chiamate ogni frame (l'update del traffico a <code>0x464DAC</code>, l'HUD a <code>0x464DF4</code>)
     oppure sostituendo una voce di vtable con un wrapper che chiama l'originale. Ogni funzione ha la sua pagina di codice e la sua pagina di dati.</p>
+  <p><span class="tag wip">codice</span> Nel confezionamento, l'aggiornamento della protezione audio IOP conserva ora le patch EE successive.
+    Prima eliminava tutto dopo il proprio marcatore. Regressioni verificano anche l'aggancio della rincorsa nel pacchetto completo.</p>
 
   <p class="card"><small>Questa pagina riassume gli appunti di ricerca del progetto. Ogni voce ha prove, limiti e storico nei documenti di lavoro.</small></p>
 </main>
