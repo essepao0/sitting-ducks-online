@@ -102,6 +102,16 @@
   <p>Vuoi due giocatori sullo stesso computer? <strong>Nuova sessione</strong> apre un secondo launcher con il suo PCSX2 e il suo profilo.
     Il menu <strong>Istanza PCSX2</strong> collega una finestra di PCSX2 già aperta.</p>
 
+  <h2 id="riconnessione">Rientrare senza usare la finestra del launcher <span class="tag wip">in prova</span></h2>
+  <ol>
+    <li>Lascia il launcher sorgente aggiornato in background. Scollegati e attendi il ripristino della partita offline.</li>
+    <li>Apri R3+SU e scegli Entra sull'ultimo server, oppure Rientra nel server nella prima riga.</li>
+    <li>Puoi ripetere il ciclo; anche il launcher riconosce la nuova connessione e il suo pulsante Disconnetti funziona.</li>
+  </ol>
+  <p>Questa modifica Python richiede un nuovo avvio del launcher per essere attiva; la riconnessione normale non riavvia il gioco.
+    Se la patch del gioco caricato è diversa dal pacchetto, resta necessario un avvio completo del gioco. Client e server devono usare versioni compatibili.
+    Conferma visiva con due giocatori ancora pendente.</p>
+
   <h2 id="problemi">Se qualcosa non va</h2>
   <ul>
     <li><strong>Apri registro</strong> mostra il registro della sessione: mandalo quando segnali un bug.</li>

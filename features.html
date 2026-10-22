@@ -56,6 +56,7 @@
       <li><a href="#traffic">Shared traffic</a></li>
       <li><a href="#online-vehicles">Shared vehicles and passengers</a></li>
       <li><a href="#online-chase">Remote crocodile chase animation</a></li>
+      <li><a href="#reconnect">Rejoin from the game</a></li>
       <li><a href="#campaign">Campaign together</a></li>
       <li><a href="#host">Host settings</a></li>
     </ul>
@@ -144,6 +145,12 @@
   <p>The chase animation could stay frozen when seen by another player. A correction now preserves the remote
     movement data used to advance that animation. Targeted animation checks pass; visual confirmation with two players is pending.
     Testing requires a fresh game boot with the updated source launcher, without loading an older emulator state.</p>
+  <div class="media"></div>
+
+  <h3 id="reconnect">Rejoin from the game <span class="tag wip">testing</span></h3>
+  <p>After disconnecting and restoring the offline game, R3+UP → Entra reconnects to the last server with the launcher
+    running in the background. The launcher recognises this connection and can disconnect it. Network or patch errors stay visible
+    instead of asking you to load an already loaded game. Automated lifecycle checks pass; in-game confirmation is pending.</p>
   <div class="media"></div>
 
   <h3 id="campaign">Campaign together <span class="tag wip">testing</span></h3>

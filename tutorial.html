@@ -103,6 +103,16 @@
   <p>Two players on the same computer? <strong>Nuova sessione</strong> (New session) opens a second launcher with its own PCSX2 and profile.
     The <strong>Istanza PCSX2</strong> (PCSX2 instance) menu attaches a PCSX2 window that is already open.</p>
 
+  <h2 id="reconnect">Rejoin without using the launcher window <span class="tag wip">testing</span></h2>
+  <ol>
+    <li>Keep the updated source launcher running in the background. Disconnect and wait for the offline game to be restored.</li>
+    <li>Open R3+UP and choose Entra on the last server, or Rientra nel server on the first row.</li>
+    <li>You can repeat this cycle; the launcher also recognises the new connection and its Disconnetti button works.</li>
+  </ol>
+  <p>This Python change needs a newly opened launcher to take effect; normal reconnection does not restart the game.
+    If the loaded game patch differs from the package, a full game boot is still required. Client and server must use matching versions.
+    Visual confirmation with two players is pending.</p>
+
   <h2 id="trouble">If something goes wrong</h2>
   <ul>
     <li><strong>Apri registro</strong> (Open log) shows the session log: send it along when you report a bug.</li>
