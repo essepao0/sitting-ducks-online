@@ -57,7 +57,9 @@
       <li><a href="#rincorsa-online">Animazione rincorsa dei coccodrilli remoti</a></li>
       <li><a href="#riconnessione">Rientro dal gioco</a></li>
       <li><a href="#campagna">Campagna in compagnia</a></li>
+      <li><a href="#online-additions">Modalità, acquisti e spinta</a></li>
       <li><a href="#host">Impostazioni dell'host</a></li>
+          <li><a href="#proximity-voice">Voce, velocità e comando passeggero</a></li>
     </ul>
     <strong>Comandi</strong>
     <ul><li><a href="#comandi">Tabella dei comandi</a></li></ul>
@@ -165,6 +167,33 @@
     giorno e notte, civili sì o no, aree della città sbloccate. Può anche azzerare il profilo di un giocatore o chiudere il server.</p>
   <div class="media"></div>
 
+  <h3 id="online-additions">Modalità, accessori, oggetti nel mondo e spinta <span class="tag wip">in prova</span></h3>
+  <p>Schema rete 14, 22 ottobre 2026. Campagna mantiene storia e missioni condivise; Free Play disabilita
+    avvio, segni sulla mappa e radar delle missioni, conservando i progressi. L'host può rendere disponibili
+    tutti gli accessori: spegnendo l'opzione vengono tolti quelli indossati ma non posseduti. Il comando
+    sul singolo profilo assegna o toglie tutto il catalogo.</p>
+  <p>Il menu host permette di piazzare punti di sblocco/acquisto per scooter, veicoli, oggetti, mappe,
+    indossabili e accessori, scegliendo prezzo in piume, distanza e altezza. Ogni giocatore li sblocca
+    separatamente; l'acquisto richiede conferma e le richieste ripetute non addebitano due volte.
+    Alcune abilità/mappe usano una piuma come segnaposto. I veicoli esposti sbloccano il richiamo dall'inventario.</p>
+  <p>A piedi, Cerchio vicino a un player/NPC davanti a te richiede una spinta, con caduta, impulso nel verso
+    del calcio e perdita di piume. L'animazione dello skate è candidata alla riproduzione inversa.
+    Verifiche automatiche e rete reale superate; resa visiva, quantità delle piume e collisioni richiedono
+    ancora il collaudo con due client. Riavvio completo con server e client aggiornati, senza vecchi savestate.</p>
+  <div class="media"></div>
+
+  <h3 id="proximity-voice">Voce, velocità a piedi e comando passeggero <span class="tag wip">in prova</span></h3>
+  <p>Premi L1 + GIÙ per attivare/disattivare il microfono: parte spento a ogni collegamento. L'icona
+    in basso a destra è rossa da spento, verde da acceso, più luminosa mentre parli e arancione in caso di
+    errore audio/permessi. Gli altri sentono la voce entro 25 metri, con volume che diminuisce con la distanza.
+    Le tracce della bocca dell'animazione Talk si applicano al player locale e al remoto visibile, lasciando libero il corpo.</p>
+  <p>L1 + Triangolo fa salire dietro sullo scooter/veicolo compatibile di un altro player o NPC; Cerchio
+    resta per scendere. Le combo hanno precedenza sul guardaroba. Le opzioni velocità a piedi dell'host
+    moltiplicano ora la velocità massima nativa, conservando tempo della fisica e accelerazione.</p>
+  <p>Si usano microfono e uscita audio predefiniti del sistema; il permesso viene richiesto all'attivazione.
+    Si possono sentire fino a quattro voci vicine insieme. Audio e bocca sono implementati e verificati
+    automaticamente; hardware microfono, latenza tra due computer, resa del volto e Windows restano da collaudare.</p>
+  <div class="media"></div>
   <h2 id="comandi">Comandi</h2>
   <table>
     <tr><th>Comando</th><th>Effetto</th></tr>
@@ -177,7 +206,10 @@
     <tr><td>R3 + Select</td><td>giorno ↔ notte</td></tr>
     <tr><td>L3 + R3</td><td>richiama il compagno (co-op)</td></tr>
     <tr><td>R3 + SU</td><td>menu online</td></tr>
+    <tr><td>L1 + GIÙ</td><td>microfono acceso/spento (in prova)</td></tr>
+    <tr><td>L1 + Triangolo</td><td>sali dietro (in prova); Cerchio per scendere</td></tr>
   </table>
+
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

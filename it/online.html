@@ -84,6 +84,35 @@
   <p>Il gioco contiene già dei minigiochi. L'idea è renderli giocabili tra più giocatori.
     Quando ci saranno, troverai qui regole e video.</p>
   <div class="media"></div>
+
+  <h2 id="schema14">Regole aggiunte — schema 14 <span class="tag wip">in prova</span></h2>
+  <ul>
+    <li>Campagna o Free Play nelle opzioni host; passando a Free Play un tentativo attivo viene annullato,
+      conservando i progressi. Tornando a Campagna si riprende la storia del server.</li>
+    <li>Accessori posseduti distinti dalla concessione globale temporanea; disattivarla rimuove i pezzi
+      non posseduti. Gli acquisti rimangono nel profilo di quel server.</li>
+    <li>Fino a 64 punti di acquisto/sblocco persistenti. Solo l'host li piazza e li rimuove.
+      Gratis: raccolta entro 1,1 m. A pagamento: proposta entro 1,8 m, controllo server entro 2,4 m.</li>
+    <li>Prezzo, saldo, distanza e possesso controllati dal server; ricevuta e oggetto salvati insieme.
+      Le revisioni impediscono a vecchi autosalvataggi di annullare un acquisto o una modifica host.
+      I guadagni di piume rimangono simulati dai client, secondo il modello di fiducia già usato.</li>
+    <li>Spinta a piedi con Cerchio: bersaglio frontale entro 2 m, pausa di 0,8 s; caduta simulata dal
+      proprietario della vittima e replicata agli altri. Nessuna spinta su personaggi montati o catturati.</li>
+  </ul>
+  <p>Conferma acquisto nel menu online con renderer nativo; la finestra del negozio originale non è ancora
+    riprodotta e certificata per tutti gli accessori. Nuovi modelli e animazione inversa richiedono prove
+    visive. <a href="features.html#online-additions">Stato delle funzioni</a>.</p>
+
+  <h2 id="proximity-voice">Voce di prossimità <span class="tag wip">in prova</span></h2>
+  <p>L1 + GIÙ attiva/disattiva la trasmissione; ogni collegamento parte con microfono spento. Il server
+    ricava identità, distanza e volume dalle posizioni dei player: pieno volume entro 2 m, sfuma fino al
+    silenzio a 25 m, nessun ritorno della propria voce. Ogni ascoltatore riceve al massimo le quattro voci
+    attive più vicine. La bocca segue l'attività vocale del personaggio rappresentato: non aggiunge slot visibili.</p>
+  <p>Audio mono PCM16 a 16 kHz, blocchi da 20 ms, sulla connessione TCP esistente, con sequenze e limiti
+    di frequenza. Nessuna porta o servizio aggiuntivo e nessun file di registrazione audio. Gli snapshot
+    contengono soltanto l'attività. Perdite TCP possono ritardare voce e gioco; questa prima versione non
+    ha canale UDP separato, cancellazione eco, selettore microfono o mute individuale. Consigliate le cuffie.
+    Qualità su hardware/rete reali e Windows da collaudare.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

@@ -84,6 +84,35 @@
   <h2 id="minigames">Minigames <span class="tag plan">planned</span></h2>
   <p>The game already has minigames. The idea is to make them playable with several players. When they're ready, you'll find rules and videos here.</p>
   <div class="media"></div>
+
+  <h2 id="schema14">Added rules — schema 14 <span class="tag wip">testing</span></h2>
+  <ul>
+    <li>Campaign or Free Play in host options; switching to Free Play cancels an active attempt and keeps
+      campaign progress. Switching back resumes the server's story.</li>
+    <li>Owned accessories stay separate from the temporary global grant; revoking it removes unowned worn
+      pieces. Purchases remain in that server's profile.</li>
+    <li>Up to 64 persistent unlock/purchase points. Only the host places and removes them. Free pickup:
+      within 1.1 m. Paid prompt: within 1.8 m, server range check within 2.4 m.</li>
+    <li>The server checks price, balance, range and ownership; the receipt and item are saved together.
+      Revisions stop older autosaves undoing purchases or host edits. Feather earnings remain client
+      simulated under the existing trust model.</li>
+    <li>Circle pushing on foot: target in front within 2 m, 0.8-second cooldown; the victim's owner simulates
+      the fall and replicates it. Mounted or captured characters cannot be pushed.</li>
+  </ul>
+  <p>Purchase confirmation uses the online menu and native renderer; the original shop window has not yet
+    been reproduced and certified for all accessories. New models and reverse animation require visual
+    testing. <a href="features.html#online-additions">Feature status</a>.</p>
+
+  <h2 id="proximity-voice">Proximity voice <span class="tag wip">testing</span></h2>
+  <p>L1 + DOWN toggles transmission; each connection starts muted. The server derives identity, range
+    and volume from published player positions: full volume up to 2 m, fade to silence at 25 m, no self-echo.
+    Each listener receives at most four nearest active speakers. Mouth motion uses speaking activity and
+    only the character currently represented in the game; it does not add more visible player slots.</p>
+  <p>Mono PCM16 at 16 kHz travels in bounded 20 ms frames over the existing TCP connection, with sequence
+    checks and rate limits. No extra port, service or audio recording file is introduced. Snapshots contain
+    activity only. TCP loss can delay voice and gameplay; this first version has no separate UDP channel,
+    echo cancellation, microphone selector or per-player mute. Headphones are recommended. Hardware/network
+    quality and Windows await testing.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

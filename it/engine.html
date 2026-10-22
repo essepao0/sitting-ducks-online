@@ -165,6 +165,27 @@
     Prima eliminava tutto dopo il proprio marcatore. Regressioni verificano anche l'aggancio della rincorsa nel pacchetto completo.</p>
 
   <p class="card"><small>Questa pagina riassume gli appunti di ricerca del progetto. Ogni voce ha prove, limiti e storico nei documenti di lavoro.</small></p>
+
+  <h2 id="online-schema14">Missioni, guardaroba e oggetti online <span class="tag wip">in prova</span></h2>
+  <p>Free Play blocca l'avvio missioni e filtra la funzione condivisa di ricerca dei segni per radar e mappa,
+    senza modificare gli array nativi. Il guardaroba usa una maschera di scelte consentite per zona;
+    gli ID degli accessori derivano dai nomi risorsa, separati dall'equipaggiamento.</p>
+  <p>Il negozio originale passa da interazione oggetto a menu acquisto nativo. Le nuove offerte usano
+    modelli grafici clonati senza agenti di raccolta: il server conferma lo sblocco e la spesa prima di
+    applicarli. La rimozione stacca il modello e rilascia il riferimento della factory.</p>
+  <p>La spinta usa la caduta nativa e la velocità fisica nella direzione del colpitore, invece di spostare
+    direttamente il bersaglio. La riproduzione inversa imposta il cursore alla durata della clip e la
+    velocità negativa. Questi percorsi sono verificati nel codice e nei test; resta il collaudo nel gioco.</p>
+
+  <h2 id="voice-speed">Velocità massima a piedi e bocca <span class="tag wip">in prova</span></h2>
+  <p>La correzione avvolge il getter nativo della velocità massima <code>0x36AC60</code> e ne moltiplica
+    il risultato separatamente per player e civili. Gli update conservano il tempo originale; volo e guida
+    sono esclusi. Il vecchio moltiplicatore del tempo influiva sull'accelerazione.</p>
+  <p>La voce recupera la clip nativa Talk senza entrare nello stato dialogo. Copie dell'animazione corrente
+    sostituiscono soltanto le rotazioni della bocca con quelle di Talk, in buffer privati. Il wrapper PlayAnim
+    seleziona la copia durante l'update, poi ripristina la clip originale e mantiene il callback coccodrilli.
+    Tracce del corpo, stato movimento e cursore restano intatti. Clip incompatibili e pose con prede saltano
+    lo strato. Quad dell'HUD nativo disegnano il microfono anche con menu online chiuso.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

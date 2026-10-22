@@ -167,6 +167,27 @@
     Previously the updater truncated everything after its own marker. Regression checks cover the chase hook in the complete package.</p>
 
   <p class="card"><small>This page summarises the project's research notes. Each entry has its evidence, limits and history in the working documents.</small></p>
+
+  <h2 id="online-schema14">Online missions, wardrobe and world items <span class="tag wip">testing</span></h2>
+  <p>Free Play blocks mission starts and filters the common marker query used by radar and map, leaving
+    native arrays intact. The wardrobe uses allowed-choice masks per body zone; accessory IDs derive
+    from resource names and remain separate from equipped choices.</p>
+  <p>The original shop routes object interaction into a native purchase menu. New offers use cloned
+    graphic models without collectible agents: the server confirms the unlock and price before applying
+    them. Removal detaches the model and releases the factory reference.</p>
+  <p>Pushing uses the native fall and physical velocity in the attacker's direction. Reverse playback sets
+    the cursor to the clip duration and uses a negative speed. Code and automated tests cover these
+    paths; in-game validation is still pending.</p>
+
+  <h2 id="voice-speed">Maximum walking speed and speech layer <span class="tag wip">testing</span></h2>
+  <p>The speed correction wraps the native maximum-speed getter at <code>0x36AC60</code>, multiplying
+    its result separately for players and civilians. Native updates retain their original timestep;
+    flight and mounted states are excluded. Changing the old timestep multiplier affected acceleration.</p>
+  <p>Speech fetches the native Talk clip without entering a dialogue state. Copies of the current
+    animation replace only jaw rotations from Talk, using private buffers. The PlayAnim wrapper temporarily
+    selects the copy for its update, restores the original clip afterwards and retains the existing crocodile
+    callback. Body tracks, movement state and playback cursor stay intact. Incompatible clips and carrying
+    poses skip the layer. Native HUD quads draw a microphone independently of the online menu.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

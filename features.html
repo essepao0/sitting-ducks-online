@@ -58,7 +58,9 @@
       <li><a href="#online-chase">Remote crocodile chase animation</a></li>
       <li><a href="#reconnect">Rejoin from the game</a></li>
       <li><a href="#campaign">Campaign together</a></li>
+      <li><a href="#online-additions">Modes, purchases and pushing</a></li>
       <li><a href="#host">Host settings</a></li>
+          <li><a href="#proximity-voice">Voice, speed and passenger controls</a></li>
     </ul>
     <strong>Controls</strong>
     <ul><li><a href="#controls">Controls table</a></li></ul>
@@ -164,6 +166,33 @@
     passers-by on or off, and unlocked areas of town. The host can also reset a player's profile or shut the server down.</p>
   <div class="media"></div>
 
+  <h3 id="online-additions">Modes, accessories, world items and pushing <span class="tag wip">testing</span></h3>
+  <p>Network schema 14, 22 October 2026. Campaign keeps the shared story and missions; Free Play disables
+    mission starts, map markers and radar signs while preserving progress. The host can make every accessory
+    available: turning the option off removes worn pieces the player does not own. The individual profile
+    command grants or removes the entire accessory catalogue.</p>
+  <p>The host menu can place unlock/purchase points for scooters, vehicles, objects, maps, wearables and
+    accessories, choosing a feather price, distance and height. Each player unlocks them separately;
+    paid purchases require confirmation and repeated requests do not charge twice. Some abilities/maps
+    use a feather placeholder. Display vehicles unlock their inventory recall.</p>
+  <p>On foot, Circle near a player/NPC in front of you requests a push, with a fall, an impulse in the kick's
+    direction and dropped feathers. The skate animation is a candidate for reverse playback. Automated
+    checks and a real network flow pass; visuals, feather amounts and collisions still need two-client
+    in-game testing. Fully restart updated server and clients without older savestates.</p>
+  <div class="media"></div>
+
+  <h3 id="proximity-voice">Voice, walking speed and passenger controls <span class="tag wip">testing</span></h3>
+  <p>Press L1 + DOWN to toggle the microphone. It starts muted on every connection. The microphone icon
+    at the bottom right is red when muted, green when enabled, brighter while speaking, and amber on an
+    audio/permission error. Nearby players hear your voice with distance attenuation, up to 25 metres.
+    Native Talk jaw tracks animate the local and visible remote character while leaving body movement free.</p>
+  <p>L1 + Triangle boards the rear seat of another player's or NPC's scooter/compatible vehicle; Circle
+    still gets off. These combinations take priority over the wardrobe. Host walking-speed settings now
+    multiply the actual native maximum speed, preserving the physics timestep and acceleration.</p>
+  <p>Audio uses the system's default input/output and requests microphone permission on activation.
+    Up to four nearby speakers are audible together. Audio and jaw motion are implemented and automatically
+    checked, but microphone hardware, two-computer latency, facial appearance and Windows still need testing.</p>
+  <div class="media"></div>
   <h2 id="controls">Controls</h2>
   <table>
     <tr><th>Input</th><th>Effect</th></tr>
@@ -176,7 +205,10 @@
     <tr><td>R3 + Select</td><td>day ↔ night</td></tr>
     <tr><td>L3 + R3</td><td>call back your partner (co-op)</td></tr>
     <tr><td>R3 + UP</td><td>online menu</td></tr>
+    <tr><td>L1 + DOWN</td><td>microphone on/off (testing)</td></tr>
+    <tr><td>L1 + Triangle</td><td>board rear seat (testing); Circle gets off</td></tr>
   </table>
+
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>
