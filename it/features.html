@@ -78,8 +78,7 @@
   <div class="media"></div>
 
   <h3 id="furgone">Furgone e NOS <span class="tag ok">confermato</span></h3>
-  <p>Un furgone guidabile, costruito dal modello del furgone già presente nella città, si evoca con
-    L3+Select. Tenendo premuto R1 alla guida si attiva il NOS: velocità doppia e fiamma azzurra e arancione dallo scarico.</p>
+  <p>Un furgone guidabile, costruito dal modello del furgone già presente nella città, si richiama dal menu dei mezzi. Tenendo premuto R1 alla guida si attiva il NOS: velocità doppia e fiamma azzurra e arancione dallo scarico.</p>
   <div class="media"></div>
 
   <h3 id="volo">Volo <span class="tag ok">confermato</span></h3>
@@ -95,18 +94,18 @@
   <p>Gli skate e gli aerei scelti dal menu non scompaiono più. Raoul, il corvo, compare nel menu dei mezzi.</p>
   <div class="media"></div>
 
-  <h3 id="personaggio">Cambio personaggio <span class="tag ok">confermato</span></h3>
-  <p>Con le frecce sinistra e destra passi da Bill ad Aldo e viceversa durante l'esplorazione.</p>
+  <h3 id="personaggio">Cambio personaggio <span class="tag wip">in prova</span></h3>
+  <p>Tieni L1 e premi DESTRA per passare al personaggio successivo durante l'esplorazione (comando aggiornato, in prova).</p>
   <div class="media"></div>
 
-  <h3 id="guardaroba">Guardaroba <span class="tag ok">confermato</span></h3>
-  <p>L1 apre il guardaroba: si scelgono i pezzi (cappelli, maschere, costumi) zona per zona con le frecce.
+  <h3 id="guardaroba">Guardaroba <span class="tag wip">in prova</span></h3>
+  <p>Premi e rilascia L1 da solo per aprire/chiudere il guardaroba (comando aggiornato, in prova). Una combo annulla il tap: si scelgono i pezzi (cappelli, maschere, costumi) zona per zona con le frecce.
     Gli accessori vengono dal gioco originale, dove li indossavano altri personaggi. Online, la scelta viene salvata nel profilo.</p>
   <div class="media"></div>
 
   <h3 id="giornonotte">Giorno e notte <span class="tag ok">confermato</span></h3>
   <p>Un ciclo completo dura 15 minuti. Di notte ci sono meno civili in strada e suona la musica della palude.
-    R3+Select passa subito dal giorno alla notte o viceversa.</p>
+    La scorciatoia sul controller è rimossa; giorno e notte restano regolabili dall'host.</p>
   <div class="media"></div>
 
   <h3 id="coop">Co-op a schermo condiviso <span class="tag ok">confermato</span></h3>
@@ -126,8 +125,8 @@
     nel server, oppure lo ospita. Non serve installare Python.</p>
   <div class="media"><img src="../media/launcher-gioca.png" alt="Il launcher"></div>
 
-  <h3 id="menuonline">Menu online nel gioco <span class="tag ok">confermato</span></h3>
-  <p>R3+SU apre il menu online senza uscire dal gioco: Ospita, Entra, Disconnetti. Uscire dalla partita scollega dal server.</p>
+  <h3 id="menuonline">Menu online nel gioco <span class="tag wip">in prova</span></h3>
+  <p>L1+SU apre il menu online senza uscire dal gioco: Ospita, Entra, Disconnetti. Uscire dalla partita scollega dal server.</p>
   <div class="media"></div>
 
   <h3 id="profili">Profili persistenti e piume <span class="tag ok">confermato</span></h3>
@@ -151,7 +150,7 @@
   <div class="media"></div>
 
   <h3 id="riconnessione">Rientro dal gioco <span class="tag wip">in prova</span></h3>
-  <p>Dopo la disconnessione e il ripristino della partita offline, R3+SU → Entra ricollega all'ultimo server con il launcher
+  <p>Dopo la disconnessione e il ripristino della partita offline, L1+SU → Entra ricollega all'ultimo server con il launcher
     in background. Il launcher riconosce questa connessione e permette di scollegarla. Gli errori di rete o patch restano visibili,
     senza chiedere di caricare una partita già caricata. Controlli automatici del ciclo superati; conferma nel gioco pendente.</p>
   <div class="media"></div>
@@ -163,7 +162,7 @@
   <div class="media"></div>
 
   <h3 id="host">Impostazioni dell'host <span class="tag wip">in prova</span></h3>
-  <p>Chi ospita, dal menu R3+SU: piume iniziali, sblocchi (scooter, veicoli, oggetti, mappe, personaggi), ciclo
+  <p>Chi ospita, dal menu L1+SU: piume iniziali, sblocchi (scooter, veicoli, oggetti, mappe, personaggi), ciclo
     giorno e notte, civili sì o no, aree della città sbloccate. Può anche azzerare il profilo di un giocatore o chiudere il server.</p>
   <div class="media"></div>
 
@@ -176,7 +175,7 @@
     indossabili e accessori, scegliendo prezzo in piume, distanza e altezza. Ogni giocatore li sblocca
     separatamente; l'acquisto richiede conferma e le richieste ripetute non addebitano due volte.
     Alcune abilità/mappe usano una piuma come segnaposto. I veicoli esposti sbloccano il richiamo dall'inventario.</p>
-  <p>A piedi, Cerchio vicino a un player/NPC davanti a te richiede una spinta, con caduta, impulso nel verso
+  <p>A piedi, L1 + Cerchio vicino a un player/NPC davanti a te richiede una spinta, con caduta, impulso nel verso
     del calcio e perdita di piume. L'animazione dello skate è candidata alla riproduzione inversa.
     Verifiche automatiche e rete reale superate; resa visiva, quantità delle piume e collisioni richiedono
     ancora il collaudo con due client. Riavvio completo con server e client aggiornati, senza vecchi savestate.</p>
@@ -198,17 +197,17 @@
   <table>
     <tr><th>Comando</th><th>Effetto</th></tr>
     <tr><td>Triangolo vicino a un mezzo</td><td>fa scendere il civile, poi ti fa salire</td></tr>
-    <tr><td>L3 + Select</td><td>evoca il furgone</td></tr>
     <tr><td>R1 alla guida</td><td>NOS</td></tr>
     <tr><td>R1 a piedi (Aldo)</td><td>rincorsa e morso, poi rilascio</td></tr>
-    <tr><td>Frecce ← →</td><td>cambio personaggio Bill / Aldo</td></tr>
-    <tr><td>L1</td><td>guardaroba</td></tr>
-    <tr><td>R3 + Select</td><td>giorno ↔ notte</td></tr>
+    <tr><td>L1 + DESTRA</td><td>personaggio successivo (in prova)</td></tr>
+    <tr><td>L1 da solo, rilascio</td><td>guardaroba (in prova)</td></tr>
     <tr><td>L3 + R3</td><td>richiama il compagno (co-op)</td></tr>
-    <tr><td>R3 + SU</td><td>menu online</td></tr>
+    <tr><td>L1 + SU</td><td>menu online</td></tr>
     <tr><td>L1 + GIÙ</td><td>microfono acceso/spento (in prova)</td></tr>
     <tr><td>L1 + Triangolo</td><td>sali dietro (in prova); Cerchio per scendere</td></tr>
+    <tr><td>L1 + Cerchio</td><td>spinta a piedi (in prova)</td></tr>
   </table>
+  <p>Comandi aggiornati in prova: le combinazioni con L1 non aprono il guardaroba al rilascio. R1 e L3+R3 mantengono le loro funzioni. La vecchia scorciatoia di restituzione del mezzo è rimossa.</p>
 
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
