@@ -34,6 +34,11 @@
   <!-- New version = new .card block AT THE TOP, with date, new features, fixes, known limits and download links. -->
 
 
+  <div class="card" id="freeplay-entry-23oct"><h3>Free Play: block mission volumes before the transition <span class="tag wip">testing</span></h3>
+  <p><small>23 October 2026</small></p>
+  <p>An invisible mission point could still trigger its volume: the Free Play check ran after input was locked and the fade had begun, leaving a black screen without an active mission. The new guard rejects entry before these effects. Campaign and single player retain the original function; icon filtering and server rejection remain active. Recovery of the open session restored the picture and movement, confirmed by the user, but does not install the new code.</p>
+  <p>Fully restart PCSX2 with the updated package and load a normal memory-card save; do not load old emulator states. Older running instances still have the defective trigger after clearing the black screen. The automated regression executes the original entry body; walking through it with the new build still needs in-game confirmation.</p></div>
+
   <div class="card" id="microphone-size-23oct"><h3>Microphone: corrected size and left-hand position <span class="tag ok">size fix confirmed</span></h3>
   <p><small>23 October 2026</small></p>
   <p>The large red/green square was the microphone: the renderer expects two corners, but the icon passed an origin and dimensions. The six rectangles now use corrected coordinates; the user confirmed the size fix. At their request the icon is now at the bottom left. The fix was applied to the open P1 session through graphics data only, without restarting or changing running code. Muted is red, enabled is green; L1+DOWN is unchanged. The Select card remains at the bottom right.</p></div>

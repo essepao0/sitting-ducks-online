@@ -201,6 +201,9 @@
   <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
   <h2 id="microphone-size-23oct">Microphone: corrected size and left-hand position <span class="tag ok">size fix confirmed</span></h2>
   <p>The large red/green square was the microphone: the renderer expects two corners, but the icon passed an origin and dimensions. The six rectangles now use corrected coordinates; the user confirmed the size fix. At their request the icon is now at the bottom left. The fix was applied to the open P1 session through graphics data only, without restarting or changing running code. Muted is red, enabled is green; L1+DOWN is unchanged. The Select card remains at the bottom right.</p>
+  <h2 id="freeplay-entry-23oct">Free Play: block mission volumes before the transition <span class="tag wip">testing</span></h2>
+  <p>The boot hook at 37F4F0 intercepts AgentMission entry before action saving, 389DE0 and fade93. Helper 17F000, trampoline 17F080; active only with valid session MAGIC, enable, Free Play and GID. The previous 3801A0 guard is a fade-completion callback. The mode flag now updates before waiting for an in-flight EE acknowledgement; launcher validation rejects patches without the new hook. Recovery does not rewrite already used executable code.</p>
+  <p>Fully restart PCSX2 with the updated package and load a normal memory-card save; do not load old emulator states. Older running instances still have the defective trigger after clearing the black screen. The automated regression executes the original entry body; walking through it with the new build still needs in-game confirmation.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>
