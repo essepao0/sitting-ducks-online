@@ -185,7 +185,7 @@
     paid purchases require confirmation and repeated requests do not charge twice. Some abilities/maps
     use a feather placeholder. Display vehicles unlock their inventory recall.</p>
   <p>On foot, L1 + Circle near a player/NPC in front of you requests a push, with a fall, an impulse in the kick's
-    direction and dropped feathers. The skate animation is a candidate for reverse playback. Automated
+    direction and dropped feathers. The candidate uses the skate-push movement on foot with forward playback and an explicit stop. Automated
     checks and a real network flow pass; visuals, feather amounts and collisions still need two-client
     in-game testing. Fully restart updated server and clients without older savestates.</p>
   <div class="media"></div>
@@ -238,10 +238,12 @@
   <div class="media"></div>
 
   <h2 id="interactions-23oct">Online interactions — schema 15 <span class="tag wip">testing</span></h2>
+  <p>After the input correction, the user reported a crash/disconnection for all players, including on foot without a skateboard. Logs show an accepted empty push followed by an invalid game handle; the server stays running. The reverse clip could remain active after its timeout. The new candidate plays the same native movement forward and explicitly restores idle after the push, preserving damage and vehicle actions. Owning a skateboard is not required. The connection fix still needs in-game confirmation.</p>
+  <p>The first user trial still found no push. The controller row had been confused with the gameplay context: Circle is row+1D, whereas context+2D is its edge. The same error made passenger boarding read Circle and a timer as L1+Triangle. The new regression executes the original pad decoder; this correction needs another full restart and remains under testing.</p>
   <p>L1 + Circle is captured by the game even for short presses: the kick also plays without a target. Rules for players and NPCs: ducks push ducks; penguins push ducks and penguins; crocodiles push everyone. The NPC owner rechecks its actual species before applying the impulse.</p>
   <p>Passenger boarding uses L1 + Triangle on foot. Driver Circle drops the rear passenger without collecting another player or NPC, including during missions; automatic mission passengers are retained. Both clients and late joiners receive the removed seat. Reboarding stays suspended until native detachment completes.</p>
   <p>Free Play mission points are hidden on the game thread each frame, including after reactivation; the previous three-second refresh is removed. The remote running animation blend path is corrected across terrain types. Speech uses all mouth bones moved by Talk, adds missing tracks for Aldo and Fred, and exaggerates opening through normalized rotations.</p>
-  <p>691 online tests run: 690 passed, one skipped. Two-client TCP and late-join checks, native instructions and rotation format verified. Visual appearance and controller play remain unconfirmed: macOS permissions prevented window control.</p>
+  <p>693 online tests run: 692 passed, one skipped. Two-client TCP and late-join checks, native instructions and rotation format verified. The latest crash correction and visual behaviour still need in-game confirmation.</p>
   <p>Update the server and every client to schema 15, fully close PCSX2 and restart from a normal memory-card save. Do not use older savestates. Mac and source packages updated; a successful build does not imply in-game confirmation.</p>
   <div class="media"></div>
 </main>
