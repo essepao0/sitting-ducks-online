@@ -113,6 +113,9 @@
     <li>Global vehicle list: count <code>*(0x467940)&gt;&gt;14</code>, array <code>*(0x467944)</code>. Object: <code>+0x71</code> 1 = player's, <code>+0x78</code> type.</li>
     <li>The traffic manager has 0x28-byte entries: <code>+0xC</code> owner, <code>+0x24</code> in use. Clearing the owner stops the stolen vehicle
       from being recycled. <span class="tag ok">verified</span></li>
+    <li><span class="tag wip">code — 23 October</span> Native <code>0x3B4630</code> hides active entries belonging to a recycled civilian.
+      The theft helper at <code>0xFFB00</code> now clears the vehicle's owner and reserves its entry immediately after ejection,
+      before the player mounts. Tests execute the original recycling instructions against all three boot patches.</li>
     <li>Recycling: after more than 2 s out of view (<code>passer-by+0xBF0</code>), in the loop at <code>0x3B2B00</code>; passers-by spawn in <code>0x3B01A0</code>.</li>
     <li>Deterministic spawning: the same point and the same random generator state (<code>0x46783C</code>/<code>0x478200</code>) give the same passer-by. This is the basis of shared online traffic.</li>
     <li>NOS: the vehicle's <code>SPEED +B0</code>/<code>ACCEL +A0</code>, fuel at <code>+7C</code>.</li>

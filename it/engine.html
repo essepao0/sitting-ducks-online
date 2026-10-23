@@ -111,6 +111,9 @@
     <li>Elenco globale dei veicoli: numero <code>*(0x467940)&gt;&gt;14</code>, array <code>*(0x467944)</code>. Oggetto: <code>+0x71</code> 1 = del giocatore, <code>+0x78</code> tipo.</li>
     <li>Il gestore del traffico ha voci da 0x28 byte: <code>+0xC</code> proprietario, <code>+0x24</code> in uso. Azzerando il proprietario,
       il mezzo rubato non viene più riciclato. <span class="tag ok">verificato</span></li>
+    <li><span class="tag wip">codice — 23 ottobre</span> La funzione nativa <code>0x3B4630</code> nasconde le voci attive del civile riciclato.
+      L'helper furto a <code>0xFFB00</code> azzera ora il proprietario del veicolo e riserva la voce subito dopo la discesa,
+      prima della salita del giocatore. I test eseguono le istruzioni originali di riciclo sui tre PNACH di avvio.</li>
     <li>Riciclo: dopo più di 2 s fuori visuale (<code>civile+0xBF0</code>), nel ciclo <code>0x3B2B00</code>; generazione dei civili in <code>0x3B01A0</code>.</li>
     <li>Generazione deterministica: stesso punto e stesso stato del generatore casuale (<code>0x46783C</code>/<code>0x478200</code>) danno lo stesso civile. È la base del traffico condiviso online.</li>
     <li>NOS: <code>SPEED +B0</code>/<code>ACCEL +A0</code> del veicolo, benzina <code>+7C</code>.</li>
