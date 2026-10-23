@@ -59,6 +59,7 @@
       <li><a href="#reconnect">Rejoin from the game</a></li>
       <li><a href="#campaign">Campaign together</a></li>
       <li><a href="#online-additions">Modes, purchases and pushing</a></li>
+      <li><a href="#offline-isolation">Single player and server settings</a></li>
       <li><a href="#host">Host settings</a></li>
           <li><a href="#proximity-voice">Voice, speed and passenger controls</a></li>
     </ul>
@@ -82,8 +83,8 @@
     double speed and a blue and orange flame from the exhaust.</p>
   <div class="media"></div>
 
-  <h3 id="flying">Flying <span class="tag ok">confirmed</span></h3>
-  <p>Bill can fly at low altitude (up to 9 m). Taking off from water uses the game's own flight.</p>
+  <h3 id="flying">Flying <span class="tag wip">testing</span></h3>
+  <p>Online, the host can enable unlimited flight and set its maximum height. Since 23 October single player uses the original game flight; this separation awaits confirmation after a fresh start.</p>
   <div class="media"></div>
 
   <h3 id="crocodiles">Crocodiles: chase and bite <span class="tag ok">confirmed</span></h3>
@@ -193,6 +194,11 @@
     Up to four nearby speakers are audible together. Audio and jaw motion are implemented and automatically
     checked, but microphone hardware, two-computer latency, facial appearance and Windows still need testing.</p>
   <div class="media"></div>
+  <h3 id="offline-isolation">Single player and server settings <span class="tag wip">testing</span></h3>
+  <p>Tests on 23 October found stationary offline NPCs and missing mission icons on foot. Two patch causes were corrected: stale NPC return branches and icon output data overwritten by the Free Play filter. The host’s unlimited-flight and height options now activate only online; single player uses the original flight. Server civilians, unlocks, accessories, speed, time and progress apply during the connection; the local story is restored on exit. Late packets cannot reapply the profile after restoration.</p>
+  <p>650 automated tests pass, one skipped. Check in game after a full restart: walking/driving NPCs, icons on foot/on vehicles and offline restoration after changing host options. Do not load older emulator states.</p>
+  <div class="media"></div>
+
   <h2 id="controls">Controls</h2>
   <table>
     <tr><th>Input</th><th>Effect</th></tr>

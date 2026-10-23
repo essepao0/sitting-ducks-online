@@ -69,12 +69,7 @@
     and offline restoration, and reports the actual connection error. The launcher must stay running in the background.
     <a href="tutorial.html#reconnect">Reconnection steps</a>.</p>
 
-  <p id="test-session-23oct"><span class="tag wip">testing · 23 October 2026</span>
-    The local test setup starts two fresh PCSX2 instances, a server and the online-menu supervisor.
-    Both emulator folders have the current patch prepared. Joining the game and visual checks are still pending:
-    load a normal memory-card save, then use L1 + UP to host in the first instance and join in the second.
-    The next checks are Aldo's R1 chase seen by the other player and two leave/rejoin cycles.
-    Keep older emulator save states out of this test.</p>
+  <p id="test-session-23oct"><span class="tag wip">testing · 23 October 2026</span> Tests on 23 October found stationary offline NPCs and missing mission icons on foot. Two patch causes were corrected: stale NPC return branches and icon output data overwritten by the Free Play filter. The host’s unlimited-flight and height options now activate only online; single player uses the original flight. Server civilians, unlocks, accessories, speed, time and progress apply during the connection; the local story is restored on exit. Late packets cannot reapply the profile after restoration. 650 automated tests pass, one skipped. Check in game after a full restart: walking/driving NPCs, icons on foot/on vehicles and offline restoration after changing host options. Do not load older emulator states.</p>
 
   <h2 id="limits">Current limits</h2>
   <ul>

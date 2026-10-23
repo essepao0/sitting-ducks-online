@@ -58,6 +58,7 @@
       <li><a href="#riconnessione">Rientro dal gioco</a></li>
       <li><a href="#campagna">Campagna in compagnia</a></li>
       <li><a href="#online-additions">Modalità, acquisti e spinta</a></li>
+      <li><a href="#offline-isolation">Single player e impostazioni server</a></li>
       <li><a href="#host">Impostazioni dell'host</a></li>
           <li><a href="#proximity-voice">Voce, velocità e comando passeggero</a></li>
     </ul>
@@ -81,8 +82,8 @@
   <p>Un furgone guidabile, costruito dal modello del furgone già presente nella città, si richiama dal menu dei mezzi. Tenendo premuto R1 alla guida si attiva il NOS: velocità doppia e fiamma azzurra e arancione dallo scarico.</p>
   <div class="media"></div>
 
-  <h3 id="volo">Volo <span class="tag ok">confermato</span></h3>
-  <p>Bill può volare a bassa quota (fino a 9 m). Se decolla dall'acqua usa il volo originale del gioco.</p>
+  <h3 id="volo">Volo <span class="tag wip">in prova</span></h3>
+  <p>Online l’host può abilitare il volo infinito e regolare la quota massima. Dal 23 ottobre il single player usa il volo originale del gioco; la separazione richiede conferma dopo il nuovo avvio.</p>
   <div class="media"></div>
 
   <h3 id="coccodrilli">Coccodrilli: rincorsa e morso <span class="tag ok">confermato</span></h3>
@@ -193,6 +194,11 @@
     Si possono sentire fino a quattro voci vicine insieme. Audio e bocca sono implementati e verificati
     automaticamente; hardware microfono, latenza tra due computer, resa del volto e Windows restano da collaudare.</p>
   <div class="media"></div>
+  <h3 id="offline-isolation">Single player e impostazioni server <span class="tag wip">in prova</span></h3>
+  <p>Le prove del 23 ottobre hanno rilevato NPC fermi offline e icone missioni assenti a piedi. Corrette due cause nella patch: ritorni obsoleti nel percorso NPC e dati delle icone alterati dal filtro Free Play. Il volo infinito e la quota dell’host ora si attivano soltanto online; il single player usa il volo originale. Civili, sblocchi, accessori, velocità, orario e progressi del server sono applicati durante la connessione; la storia locale viene ripristinata all’uscita. Pacchetti tardivi non possono riapplicare il profilo dopo il ripristino.</p>
+  <p>650 test automatici superati, uno saltato. Verificare nel gioco dopo un avvio completo: NPC a piedi/alla guida, icone a piedi/in sella e ritorno offline dopo aver alterato le opzioni host. Non caricare vecchi stati dell’emulatore.</p>
+  <div class="media"></div>
+
   <h2 id="comandi">Comandi</h2>
   <table>
     <tr><th>Comando</th><th>Effetto</th></tr>

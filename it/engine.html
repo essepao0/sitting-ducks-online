@@ -187,6 +187,9 @@
     Tracce del corpo, stato movimento e cursore restano intatti. Clip incompatibili e pose con prede saltano
     lo strato. Quad dell'HUD nativo disegnano il microfono anche con menu online chiuso.</p>
   <h2 id="l1-controls">Tap L1 e combinazioni <span class="tag wip">in prova</span></h2><p>Il guardaroba conserva un tap pendente per player e cambia stato solo al rilascio. Un altro pulsante annulla l'intera pressione, anche durante salita/cambio stato. L1+SU prende il focus prima del mascheramento frecce, senza far comparire il guardaroba; L1+DESTRA usa il selettore nativo dei personaggi. Il wrapper spinta inoltra Cerchio intatto se L1 non è premuto. Rimosse le scorciatoie per orologio e restituzione dei mezzi; opzioni host e interazioni ordinarie restano.</p>
+  <h2 id="offline-isolation">Single player e impostazioni server <span class="tag wip">in prova</span></h2>
+  <p>Il blocco NPC conteneva salti di ritorno al vecchio codice, spostato quando è stata rimossa una scorciatoia: ora blocco principale e aiutanti vengono rigenerati insieme. La lettura dei segni missione ha sette argomenti EE: il filtro deve conservarli tutti, inclusi i puntatori di uscita dell’icona. Le nuove prove eseguono le parole dei file PNACH e il corpo originale della funzione, così una routine ricostruita dai sorgenti non nasconde un file obsoleto.</p>
+  <p>650 test automatici superati, uno saltato. Verificare nel gioco dopo un avvio completo: NPC a piedi/alla guida, icone a piedi/in sella e ritorno offline dopo aver alterato le opzioni host. Non caricare vecchi stati dell’emulatore.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>
