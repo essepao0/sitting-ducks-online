@@ -176,6 +176,7 @@
   <p>Il negozio originale passa da interazione oggetto a menu acquisto nativo. Le nuove offerte usano
     modelli grafici clonati senza agenti di raccolta: il server conferma lo sblocco e la spesa prima di
     applicarli. La rimozione stacca il modello e rilascia il riferimento della factory.</p>
+  <p><span class="tag wip">codice e RAM live · 23 ottobre 2026</span> L'interazione negozio <code>0x3658A0</code> controlla la tabella nomi <code>0x4492F0/0x4492F4</code> e il byte posseduto <code>GID+0x1C5C+item*0x24</code>. Solo il byte zero raggiunge l'apertura menu <code>0x3D5CA0</code>. Il giocatore segnalato aveva già ogni oggetto acquistabile sia in RAM sia nel profilo server. Nessuna modifica al codice in esecuzione o ai possessi; acquisto con oggetto non posseduto ancora da verificare visivamente.</p>
   <p>La spinta usa la caduta nativa e la velocità fisica nella direzione del colpitore, invece di spostare
     direttamente il bersaglio. La riproduzione inversa imposta il cursore alla durata della clip e la
     velocità negativa. Questi percorsi sono verificati nel codice e nei test; resta il collaudo nel gioco.</p>

@@ -178,6 +178,7 @@
   <p>The original shop routes object interaction into a native purchase menu. New offers use cloned
     graphic models without collectible agents: the server confirms the unlock and price before applying
     them. Removal detaches the model and releases the factory reference.</p>
+  <p><span class="tag wip">code and live memory · 23 October 2026</span> Native shop interaction at <code>0x3658A0</code> checks the name table at <code>0x4492F0/0x4492F4</code> and the ownership byte at <code>GID+0x1C5C+item*0x24</code>. Only a zero ownership byte reaches the menu opener <code>0x3D5CA0</code>. The reported player already had every purchasable item in both memory and the server profile. No runtime code or ownership changed; a purchase with an unowned item still needs visual validation.</p>
   <p>Pushing uses the native fall and physical velocity in the attacker's direction. Reverse playback sets
     the cursor to the clip duration and uses a negative speed. Code and automated tests cover these
     paths; in-game validation is still pending.</p>
