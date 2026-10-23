@@ -144,8 +144,10 @@
   <h2 id="offline-isolation">Single player and server settings <span class="tag wip">testing</span></h2>
   <p>23 October update: fully close PCSX2 and start it again with the updated package, then load a normal memory-card save. Before joining, check that civilians walk/drive and that missions appear both on foot and on vehicles. Then change host options, leave and check local-story restoration, including original flight. Use Disconnect to let restoration complete. <a href="online.html#test-session-23oct">Test status</a>.</p>
   <h2 id="select-help">Controls while holding Select <span class="tag wip">testing</span></h2>
-  <p>Hold Select to show the new action controls at the bottom right; release it to hide the card immediately. Available offline and online, above the microphone icon. It lists wardrobe, online menu and host placement, character, push, microphone, passenger boarding and exit, NOS/Aldo chase and partner recall. No action or pause is triggered by the card.</p>
+  <p>Hold Select to show the new action controls at the bottom right; release it to hide the card immediately. Available offline and online, with the microphone now at the bottom left. It lists wardrobe, online menu and host placement, character, push, microphone, passenger boarding and exit, NOS/Aldo chase and partner recall. No action or pause is triggered by the card.</p>
   <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
+  <h2 id="microphone-size-23oct">Microphone: corrected size and left-hand position <span class="tag ok">size fix confirmed</span></h2>
+  <p>The large red/green square was the microphone: the renderer expects two corners, but the icon passed an origin and dimensions. The six rectangles now use corrected coordinates; the user confirmed the size fix. At their request the icon is now at the bottom left. The fix was applied to the open P1 session through graphics data only, without restarting or changing running code. Muted is red, enabled is green; L1+DOWN is unchanged. The Select card remains at the bottom right.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

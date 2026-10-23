@@ -59,6 +59,7 @@
       <li><a href="#campagna">Campagna in compagnia</a></li>
       <li><a href="#online-additions">Modalità, acquisti e spinta</a></li>
       <li><a href="#select-help">Comandi mentre tieni Select</a></li>
+      <li><a href="#microphone-size-23oct">Microfono: dimensioni corrette e posizione a sinistra</a></li>
       <li><a href="#offline-isolation">Single player e impostazioni server</a></li>
       <li><a href="#host">Impostazioni dell'host</a></li>
           <li><a href="#proximity-voice">Voce, velocità e comando passeggero</a></li>
@@ -205,7 +206,7 @@
   <div class="media"></div>
 
   <h2 id="select-help">Comandi mentre tieni Select <span class="tag wip">in prova</span></h2>
-  <p>Tieni Select per mostrare in basso a destra i comandi delle nuove azioni; rilascialo per nascondere subito la scheda. Disponibile offline e online, sopra l’icona del microfono. Elenca guardaroba, menu online e piazzamento host, personaggio, spinta, microfono, salita e discesa passeggero, NOS/rincorsa Aldo e richiamo compagno. La scheda non attiva azioni e non mette in pausa.</p>
+  <p>Tieni Select per mostrare in basso a destra i comandi delle nuove azioni; rilascialo per nascondere subito la scheda. Disponibile offline e online, con il microfono ora in basso a sinistra. Elenca guardaroba, menu online e piazzamento host, personaggio, spinta, microfono, salita e discesa passeggero, NOS/rincorsa Aldo e richiamo compagno. La scheda non attiva azioni e non mette in pausa.</p>
   <p>Chiudi completamente PCSX2 e riavvia con il pacchetto aggiornato, poi carica un normale salvataggio memory card. I vecchi stati dell’emulatore contengono il codice precedente. La suite complessiva supera 660 test, uno saltato; leggibilità nel gioco e pad fisico ancora da collaudare.</p>
   <div class="media"></div>
 
@@ -226,6 +227,9 @@
   </table>
   <p>Comandi aggiornati in prova: le combinazioni con L1 non aprono il guardaroba al rilascio. R1 e L3+R3 mantengono le loro funzioni. La vecchia scorciatoia di restituzione del mezzo è rimossa.</p>
 
+  <h3 id="microphone-size-23oct">Microfono: dimensioni corrette e posizione a sinistra <span class="tag ok">correzione confermata</span></h3>
+  <p>Il grande quadrato rosso/verde era il microfono: il renderer richiede due angoli, mentre l’icona gli passava origine e dimensioni. Corrette le coordinate dei sei rettangoli; l’utente ha confermato le dimensioni corrette. Su sua richiesta l’icona è ora in basso a sinistra. La correzione è stata applicata al P1 aperto cambiando soltanto dati grafici, senza riavvio o modifica del codice in esecuzione. Spento rosso, acceso verde; L1+GIÙ resta invariato. La lista Select resta in basso a destra.</p>
+  <div class="media"></div>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

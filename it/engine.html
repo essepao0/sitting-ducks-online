@@ -196,6 +196,8 @@
   <h2 id="select-help">Comandi mentre tieni Select <span class="tag wip">in prova</span></h2>
   <p>L’helper caricato al boot a 0x17E000 legge Select dal pad raw P1 0x476BC2, maschera 1 attiva bassa. Disegna dopo la catena HUD esistente usando testo e rettangolo nativi e un contesto UI privato a 0x182000–0x183FFF. Non modifica input o stato del gioco; microfono e buffer delle animazioni della bocca restano separati. Nessuna patch eseguibile viene applicata a caldo.</p>
   <p>Chiudi completamente PCSX2 e riavvia con il pacchetto aggiornato, poi carica un normale salvataggio memory card. I vecchi stati dell’emulatore contengono il codice precedente. La suite complessiva supera 660 test, uno saltato; leggibilità nel gioco e pad fisico ancora da collaudare.</p>
+  <h2 id="microphone-size-23oct">Microfono: dimensioni corrette e posizione a sinistra <span class="tag ok">correzione confermata</span></h2>
+  <p>Il grande quadrato rosso/verde era il microfono: il renderer richiede due angoli, mentre l’icona gli passava origine e dimensioni. Corrette le coordinate dei sei rettangoli; l’utente ha confermato le dimensioni corrette. Su sua richiesta l’icona è ora in basso a sinistra. La correzione è stata applicata al P1 aperto cambiando soltanto dati grafici, senza riavvio o modifica del codice in esecuzione. Spento rosso, acceso verde; L1+GIÙ resta invariato. La lista Select resta in basso a destra.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

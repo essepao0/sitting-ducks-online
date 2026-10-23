@@ -118,6 +118,8 @@
   <h2 id="select-help">Controls while holding Select <span class="tag wip">testing</span></h2>
   <p>The Select help card works without a connection or Python client. It displays controls only and does not change server settings. Push and microphone entries are marked online, and world placement is marked for the host.</p>
   <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
+  <h2 id="microphone-size-23oct">Microphone: corrected size and left-hand position <span class="tag ok">size fix confirmed</span></h2>
+  <p>The large red/green square was the microphone: the renderer expects two corners, but the icon passed an origin and dimensions. The six rectangles now use corrected coordinates; the user confirmed the size fix. At their request the icon is now at the bottom left. The fix was applied to the open P1 session through graphics data only, without restarting or changing running code. Muted is red, enabled is green; L1+DOWN is unchanged. The Select card remains at the bottom right.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

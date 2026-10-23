@@ -60,6 +60,7 @@
       <li><a href="#reconnect">Rejoin from the game</a></li>
       <li><a href="#campaign">Campaign together</a></li>
       <li><a href="#online-additions">Modes, purchases and pushing</a></li>
+      <li><a href="#microphone-size-23oct">Microphone: corrected size and left-hand position</a></li>
       <li><a href="#offline-isolation">Single player and server settings</a></li>
       <li><a href="#host">Host settings</a></li>
           <li><a href="#proximity-voice">Voice, speed and passenger controls</a></li>
@@ -205,7 +206,7 @@
   <div class="media"></div>
 
   <h2 id="select-help">Controls while holding Select <span class="tag wip">testing</span></h2>
-  <p>Hold Select to show the new action controls at the bottom right; release it to hide the card immediately. Available offline and online, above the microphone icon. It lists wardrobe, online menu and host placement, character, push, microphone, passenger boarding and exit, NOS/Aldo chase and partner recall. No action or pause is triggered by the card.</p>
+  <p>Hold Select to show the new action controls at the bottom right; release it to hide the card immediately. Available offline and online, with the microphone now at the bottom left. It lists wardrobe, online menu and host placement, character, push, microphone, passenger boarding and exit, NOS/Aldo chase and partner recall. No action or pause is triggered by the card.</p>
   <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
   <div class="media"></div>
 
@@ -226,6 +227,9 @@
   </table>
   <p>Updated controls are under testing: L1 combinations do not open the wardrobe on release. R1 and L3+R3 keep their existing roles. The old return-vehicle shortcut is removed.</p>
 
+  <h3 id="microphone-size-23oct">Microphone: corrected size and left-hand position <span class="tag ok">size fix confirmed</span></h3>
+  <p>The large red/green square was the microphone: the renderer expects two corners, but the icon passed an origin and dimensions. The six rectangles now use corrected coordinates; the user confirmed the size fix. At their request the icon is now at the bottom left. The fix was applied to the open P1 session through graphics data only, without restarting or changing running code. Muted is red, enabled is green; L1+DOWN is unchanged. The Select card remains at the bottom right.</p>
+  <div class="media"></div>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>
