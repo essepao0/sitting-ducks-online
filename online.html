@@ -69,7 +69,7 @@
     and offline restoration, and reports the actual connection error. The launcher must stay running in the background.
     <a href="tutorial.html#reconnect">Reconnection steps</a>.</p>
 
-  <p id="test-session-23oct"><span class="tag wip">testing · 23 October 2026</span> Tests on 23 October found stationary offline NPCs and missing mission icons on foot. Two patch causes were corrected: stale NPC return branches and icon output data overwritten by the Free Play filter. The host’s unlimited-flight and height options now activate only online; single player uses the original flight. Server civilians, unlocks, accessories, speed, time and progress apply during the connection; the local story is restored on exit. Late packets cannot reapply the profile after restoration. 650 automated tests pass, one skipped. Check in game after a full restart: walking/driving NPCs, icons on foot/on vehicles and offline restoration after changing host options. Do not load older emulator states.</p>
+  <p id="test-session-23oct"><span class="tag wip">testing · 23 October 2026</span> Tests on 23 October found stationary offline NPCs and missing mission icons on foot. Two patch causes were corrected: stale NPC return branches and icon output data overwritten by the Free Play filter. The host’s unlimited-flight and height options now activate only online; single player uses the original flight. Server civilians, unlocks, accessories, speed, time and progress apply during the connection; the local story is restored on exit. Late packets cannot reapply the profile after restoration. The user confirmed that civilians and missions now work after the fresh start. The full host-option isolation test (flight, unlocks, accessories, speed and time after leaving) is still pending. The offline-fix suite passed 650 tests, one skipped. Use normal memory-card saves rather than older emulator states.</p>
 
   <h2 id="limits">Current limits</h2>
   <ul>
@@ -115,6 +115,9 @@
     activity only. TCP loss can delay voice and gameplay; this first version has no separate UDP channel,
     echo cancellation, microphone selector or per-player mute. Headphones are recommended. Hardware/network
     quality and Windows await testing.</p>
+  <h2 id="select-help">Controls while holding Select <span class="tag wip">testing</span></h2>
+  <p>The Select help card works without a connection or Python client. It displays controls only and does not change server settings. Push and microphone entries are marked online, and world placement is marked for the host.</p>
+  <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

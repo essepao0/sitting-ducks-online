@@ -43,6 +43,7 @@
       <li><a href="#crocodiles">Crocodiles: chase and bite</a></li>
       <li><a href="#vehicles-menu">Menu vehicles and Raoul</a></li>
       <li><a href="#character">Character switch</a></li>
+      <li><a href="#select-help">Controls while holding Select</a></li>
       <li><a href="#wardrobe">Wardrobe</a></li>
       <li><a href="#daynight">Day and night</a></li>
       <li><a href="#coop">Split-screen co-op</a></li>
@@ -196,12 +197,18 @@
   <div class="media"></div>
   <h3 id="offline-isolation">Single player and server settings <span class="tag wip">testing</span></h3>
   <p>Tests on 23 October found stationary offline NPCs and missing mission icons on foot. Two patch causes were corrected: stale NPC return branches and icon output data overwritten by the Free Play filter. The host’s unlimited-flight and height options now activate only online; single player uses the original flight. Server civilians, unlocks, accessories, speed, time and progress apply during the connection; the local story is restored on exit. Late packets cannot reapply the profile after restoration.</p>
-  <p>650 automated tests pass, one skipped. Check in game after a full restart: walking/driving NPCs, icons on foot/on vehicles and offline restoration after changing host options. Do not load older emulator states.</p>
+  <p>The user confirmed that civilians and missions now work after the fresh start. The full host-option isolation test (flight, unlocks, accessories, speed and time after leaving) is still pending. The offline-fix suite passed 650 tests, one skipped. Use normal memory-card saves rather than older emulator states.</p>
+  <div class="media"></div>
+
+  <h2 id="select-help">Controls while holding Select <span class="tag wip">testing</span></h2>
+  <p>Hold Select to show the new action controls at the bottom right; release it to hide the card immediately. Available offline and online, above the microphone icon. It lists wardrobe, online menu and host placement, character, push, microphone, passenger boarding and exit, NOS/Aldo chase and partner recall. No action or pause is triggered by the card.</p>
+  <p>Fully restart PCSX2 with the updated package, then load a normal memory-card save. Older emulator states contain the previous code. The full suite passes 660 tests, one skipped; in-game readability and controller testing are pending.</p>
   <div class="media"></div>
 
   <h2 id="controls">Controls</h2>
   <table>
     <tr><th>Input</th><th>Effect</th></tr>
+    <tr><td>Hold Select</td><td>new action controls at the bottom right (testing); release to hide</td></tr>
     <tr><td>Triangle near a vehicle</td><td>makes the driver get off, then gets you on</td></tr>
     <tr><td>R1 while driving</td><td>NOS</td></tr>
     <tr><td>R1 on foot (Aldo)</td><td>chase and bite, then release</td></tr>

@@ -68,7 +68,7 @@
     salvataggio del profilo e ripristino offline, mostrando l'errore reale di connessione. Il launcher deve rimanere in background.
     <a href="tutorial.html#riconnessione">Passaggi per rientrare</a>.</p>
 
-  <p id="test-session-23oct"><span class="tag wip">in prova · 23 ottobre 2026</span> Le prove del 23 ottobre hanno rilevato NPC fermi offline e icone missioni assenti a piedi. Corrette due cause nella patch: ritorni obsoleti nel percorso NPC e dati delle icone alterati dal filtro Free Play. Il volo infinito e la quota dell’host ora si attivano soltanto online; il single player usa il volo originale. Civili, sblocchi, accessori, velocità, orario e progressi del server sono applicati durante la connessione; la storia locale viene ripristinata all’uscita. Pacchetti tardivi non possono riapplicare il profilo dopo il ripristino. 650 test automatici superati, uno saltato. Verificare nel gioco dopo un avvio completo: NPC a piedi/alla guida, icone a piedi/in sella e ritorno offline dopo aver alterato le opzioni host. Non caricare vecchi stati dell’emulatore.</p>
+  <p id="test-session-23oct"><span class="tag wip">in prova · 23 ottobre 2026</span> Le prove del 23 ottobre hanno rilevato NPC fermi offline e icone missioni assenti a piedi. Corrette due cause nella patch: ritorni obsoleti nel percorso NPC e dati delle icone alterati dal filtro Free Play. Il volo infinito e la quota dell’host ora si attivano soltanto online; il single player usa il volo originale. Civili, sblocchi, accessori, velocità, orario e progressi del server sono applicati durante la connessione; la storia locale viene ripristinata all’uscita. Pacchetti tardivi non possono riapplicare il profilo dopo il ripristino. L’utente ha confermato che civili e missioni ora funzionano dopo il nuovo avvio. Resta da collaudare l’isolamento completo delle opzioni host (volo, sblocchi, accessori, velocità e orario dopo l’uscita). La suite delle correzioni offline ha superato 650 test, uno saltato. Usare normali salvataggi memory card invece dei vecchi stati dell’emulatore.</p>
 
   <h2 id="limiti">Limiti attuali</h2>
   <ul>
@@ -115,6 +115,9 @@
     contengono soltanto l'attività. Perdite TCP possono ritardare voce e gioco; questa prima versione non
     ha canale UDP separato, cancellazione eco, selettore microfono o mute individuale. Consigliate le cuffie.
     Qualità su hardware/rete reali e Windows da collaudare.</p>
+  <h2 id="select-help">Comandi mentre tieni Select <span class="tag wip">in prova</span></h2>
+  <p>La scheda di aiuto Select funziona anche senza connessione o client Python. Mostra soltanto i comandi e non cambia le opzioni server. Spinta e microfono sono indicati come online, il piazzamento è indicato per l’host.</p>
+  <p>Chiudi completamente PCSX2 e riavvia con il pacchetto aggiornato, poi carica un normale salvataggio memory card. I vecchi stati dell’emulatore contengono il codice precedente. La suite complessiva supera 660 test, uno saltato; leggibilità nel gioco e pad fisico ancora da collaudare.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>
