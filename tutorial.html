@@ -151,6 +151,10 @@
   <h2 id="freeplay-entry-23oct">Free Play: block mission volumes before the transition <span class="tag wip">testing</span></h2>
   <p>An invisible mission point could still trigger its volume: the Free Play check ran after input was locked and the fade had begun, leaving a black screen without an active mission. The new guard rejects entry before these effects. Campaign and single player retain the original function; icon filtering and server rejection remain active. Recovery of the open session restored the picture and movement, confirmed by the user, but does not install the new code. After the fresh start, join Free Play and walk through the location of an invisible point: no mission, black screen or input lock should start. Then switch to Campaign and check that entry works. Leave the server and check single-player missions.</p>
   <p>Fully restart PCSX2 with the updated package and load a normal memory-card save; do not load old emulator states. Older running instances still have the defective trigger after clearing the black screen. The automated regression executes the original entry body; walking through it with the new build still needs in-game confirmation.</p>
+
+  <h2 id="interactions-23oct">Online interactions — schema 15 <span class="tag wip">testing</span></h2>
+  <p>Update the server and every client to schema 15, fully close PCSX2 and restart from a normal memory-card save. Do not use older savestates. Mac and source packages updated; a successful build does not imply in-game confirmation.</p>
+  <p>Check: kick without a target, then allowed and blocked species pairs; L1+Triangle to board, driver Circle to eject; compare both screens. Free Play should show no M points; switch to Campaign to check restoration. Test Aldo running on grass and Bill, Aldo and Fred speaking.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

@@ -202,6 +202,12 @@
   <h2 id="freeplay-entry-23oct">Free Play: blocco dei volumi missione prima della transizione <span class="tag wip">in prova</span></h2>
   <p>Il gancio di boot a 37F4F0 intercetta l’ingresso AgentMission prima del salvataggio dell’azione, di 389DE0 e del fade93. Helper 17F000, trampolino 17F080; attivo solo con MAGIC, enable, Free Play e GID della sessione validi. Il precedente 3801A0 è un callback a dissolvenza terminata. Ora il flag modalità viene aggiornato prima di attendere una conferma EE in corso; il controllo del launcher rifiuta le patch prive del nuovo gancio. Nessun codice eseguibile già usato è riscritto per il recupero.</p>
   <p>Serve un avvio completo di PCSX2 con il pacchetto aggiornato e un normale salvataggio memory card; non caricare vecchi savestate. Nelle istanze precedenti il volume rimane difettoso anche dopo aver tolto il nero. La prova automatica esegue il corpo originale dell’ingresso; il nuovo attraversamento nel gioco resta da confermare.</p>
+
+  <h2 id="interactions-23oct">Interazioni online — schema 15 <span class="tag wip">in prova</span></h2>
+  <p>Il wrapper input riconosce P1 da 0x1F7750: 0x17C094 conserva L1+Cerchio a piedi, 0x17C09C conserva Cerchio in guida. Il gate 0x39B8C8 impedisce raccolte manuali online; gli snapshot rimuovono il sedile e i client attendono il distacco reale.</p>
+  <p>Il selettore corsa 0x3A2460 usa sia 0x3936A0 sia il blend 0x3937F0: il secondo scavalcava l’animazione autorevole. Nuovi wrapper 0x17B500/600 proteggono anche quel percorso. Il setter velocità 0x393870 conserva la riproduzione negativa del calcio finché l’attore resta a piedi.</p>
+  <p>Il guard 0x17F400 scorre GID+0x1A8C/+0x1A90 e nasconde soltanto i nodi dei segni missione riattivati. Il decoder rotazioni 0x2E6570 usa quattro componenti con segno a 12 bit e scala 0,0005. La bocca conserva i bit alti, normalizza il quaternione, amplifica l’angolo e usa due chiavi costanti per osso, senza cambiare corpo o cursore.</p>
+  <p>691 test online eseguiti: 690 passati, uno saltato. Prova TCP su due client e ingresso tardivo; istruzioni native e formato delle rotazioni verificati. Resa visiva e pad restano da confermare: i permessi macOS hanno impedito il controllo delle finestre.</p>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
 </body>

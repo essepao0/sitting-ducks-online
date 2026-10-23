@@ -60,6 +60,7 @@
       <li><a href="#reconnect">Rejoin from the game</a></li>
       <li><a href="#campaign">Campaign together</a></li>
       <li><a href="#freeplay-entry-23oct">Free Play: block mission volumes before the transition</a></li>
+      <li><a href="#interactions-23oct">Online interactions — schema 15</a></li>
       <li><a href="#online-additions">Modes, purchases and pushing</a></li>
       <li><a href="#microphone-size-23oct">Microphone: corrected size and left-hand position</a></li>
       <li><a href="#offline-isolation">Single player and server settings</a></li>
@@ -234,6 +235,14 @@
   <h3 id="freeplay-entry-23oct">Free Play: block mission volumes before the transition <span class="tag wip">testing</span></h3>
   <p>An invisible mission point could still trigger its volume: the Free Play check ran after input was locked and the fade had begun, leaving a black screen without an active mission. The new guard rejects entry before these effects. Campaign and single player retain the original function; icon filtering and server rejection remain active. Recovery of the open session restored the picture and movement, confirmed by the user, but does not install the new code.</p>
   <p>Fully restart PCSX2 with the updated package and load a normal memory-card save; do not load old emulator states. Older running instances still have the defective trigger after clearing the black screen. The automated regression executes the original entry body; walking through it with the new build still needs in-game confirmation.</p>
+  <div class="media"></div>
+
+  <h2 id="interactions-23oct">Online interactions — schema 15 <span class="tag wip">testing</span></h2>
+  <p>L1 + Circle is captured by the game even for short presses: the kick also plays without a target. Rules for players and NPCs: ducks push ducks; penguins push ducks and penguins; crocodiles push everyone. The NPC owner rechecks its actual species before applying the impulse.</p>
+  <p>Passenger boarding uses L1 + Triangle on foot. Driver Circle drops the rear passenger without collecting another player or NPC, including during missions; automatic mission passengers are retained. Both clients and late joiners receive the removed seat. Reboarding stays suspended until native detachment completes.</p>
+  <p>Free Play mission points are hidden on the game thread each frame, including after reactivation; the previous three-second refresh is removed. The remote running animation blend path is corrected across terrain types. Speech uses all mouth bones moved by Talk, adds missing tracks for Aldo and Fred, and exaggerates opening through normalized rotations.</p>
+  <p>691 online tests run: 690 passed, one skipped. Two-client TCP and late-join checks, native instructions and rotation format verified. Visual appearance and controller play remain unconfirmed: macOS permissions prevented window control.</p>
+  <p>Update the server and every client to schema 15, fully close PCSX2 and restart from a normal memory-card save. Do not use older savestates. Mac and source packages updated; a successful build does not imply in-game confirmation.</p>
   <div class="media"></div>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>

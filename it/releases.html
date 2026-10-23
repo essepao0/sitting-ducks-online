@@ -33,6 +33,14 @@
   <!-- Nuova versione = nuovo blocco .card IN CIMA, con data, novità, correzioni, limiti noti e link ai download. -->
 
 
+  <div class="card" id="interactions-23oct"><h3>Interazioni online — schema 15 <span class="tag wip">in prova</span></h3>
+  <p><small>23 ottobre 2026</small></p>
+  <p>L1 + Cerchio viene acquisito nel gioco anche per pressioni brevi: il calcio parte anche a vuoto. Regole per player e NPC: papere spingono papere; pinguini spingono papere e pinguini; coccodrilli spingono tutti. Il proprietario dell’NPC ricontrolla la specie prima dell’impulso.</p>
+  <p>Salita passeggero solo con L1 + Triangolo a piedi. Cerchio del guidatore fa scendere chi è dietro, senza raccogliere altri player o NPC; vale anche durante le missioni, conservando i passeggeri automatici. Il posto viene rimosso per entrambi i client e per chi entra dopo. La risalita resta sospesa finché lo sgancio è completato.</p>
+  <p>I punti M in Free Play vengono nascosti sul thread del gioco a ogni frame, anche dopo una riattivazione: rimosso il precedente refresh ogni 3 secondi. Corretto il percorso di fusione delle animazioni della corsa remota sui diversi terreni. Il parlato usa tutte le ossa della bocca mosse da Talk, aggiungendo le tracce assenti per Aldo e Fred e amplificando l’apertura con rotazioni normalizzate.</p>
+  <p>691 test online eseguiti: 690 passati, uno saltato. Prova TCP su due client e ingresso tardivo; istruzioni native e formato delle rotazioni verificati. Resa visiva e pad restano da confermare: i permessi macOS hanno impedito il controllo delle finestre.</p>
+  <p>Aggiornare server e tutti i client allo schema 15, chiudere completamente PCSX2 e ripartire con un normale salvataggio memory card. Non usare vecchi savestate. Pacchetto Mac e sorgenti aggiornati; nessuna conferma nel gioco implicita nella build.</p></div>
+
   <div class="card" id="freeplay-entry-23oct"><h3>Free Play: blocco dei volumi missione prima della transizione <span class="tag wip">in prova</span></h3>
   <p><small>23 ottobre 2026</small></p>
   <p>Un punto missione invisibile poteva ancora avviare il suo volume: il controllo Free Play interveniva dopo il blocco dei comandi e la dissolvenza, lasciando lo schermo nero senza una missione attiva. La nuova protezione rifiuta l’ingresso prima di questi effetti. Campagna e single player mantengono la funzione originale; il filtro delle icone e il rifiuto del server restano attivi. Il recupero della sessione aperta ha ripristinato vista e movimento, confermati dall’utente, ma non installa il nuovo codice.</p>

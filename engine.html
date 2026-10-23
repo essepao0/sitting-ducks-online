@@ -204,6 +204,12 @@
   <h2 id="freeplay-entry-23oct">Free Play: block mission volumes before the transition <span class="tag wip">testing</span></h2>
   <p>The boot hook at 37F4F0 intercepts AgentMission entry before action saving, 389DE0 and fade93. Helper 17F000, trampoline 17F080; active only with valid session MAGIC, enable, Free Play and GID. The previous 3801A0 guard is a fade-completion callback. The mode flag now updates before waiting for an in-flight EE acknowledgement; launcher validation rejects patches without the new hook. Recovery does not rewrite already used executable code.</p>
   <p>Fully restart PCSX2 with the updated package and load a normal memory-card save; do not load old emulator states. Older running instances still have the defective trigger after clearing the black screen. The automated regression executes the original entry body; walking through it with the new build still needs in-game confirmation.</p>
+
+  <h2 id="interactions-23oct">Online interactions — schema 15 <span class="tag wip">testing</span></h2>
+  <p>The input wrapper identifies P1 at 0x1F7750: 0x17C094 retains on-foot L1+Circle, and 0x17C09C retains driver Circle. The 0x39B8C8 gate blocks manual online pickup; snapshots remove the seat and clients wait for actual detachment.</p>
+  <p>Run selector 0x3A2460 uses both 0x3936A0 and blend 0x3937F0; the latter bypassed authoritative animation selection. New wrappers at 0x17B500/600 guard that path too. Speed setter 0x393870 retains reverse kick playback while the actor stays on foot.</p>
+  <p>Guard 0x17F400 scans GID+0x1A8C/+0x1A90 and hides only reactivated mission-marker nodes. Rotation decoder 0x2E6570 uses four signed 12-bit components scaled by 0.0005. Speech preserves upper bits, normalizes the quaternion, amplifies its angle and uses two constant keys per bone without changing body motion or playback cursor.</p>
+  <p>691 online tests run: 690 passed, one skipped. Two-client TCP and late-join checks, native instructions and rotation format verified. Visual appearance and controller play remain unconfirmed: macOS permissions prevented window control.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>
