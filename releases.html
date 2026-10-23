@@ -34,10 +34,17 @@
   <!-- New version = new .card block AT THE TOP, with date, new features, fixes, known limits and download links. -->
 
 
-  <div class="card"><h2 id="push-refinements-23oct">Push refinements — schema 16 <span class="tag wip">testing</span></h2>
-  <p>The user confirmed the reverse movement, talking-NPC pushes and NPC/player feather rules in game. The new timing candidate starts halfway through the reverse clip and plays the remaining half at 1.25× (about 0.27 seconds). Looping is disabled; the network event lifetime remains separate. This timing adjustment needs a full restart and visual confirmation.</p>
+  <div class="card">
+  <h2 id="reset-position-23oct">Reset player position <span class="tag wip">testing</span></h2>
+  <p>The host can open L1+UP → Giocatori → player name → Resetta posizione to send that player to exactly (0, 0, 0). Feathers, unlocks, wardrobe and facing direction are preserved. A mounted player gets off first. Connected players apply the command at their next profile exchange, normally within about two seconds; offline players apply it when they next join. Other clients receive the new pose through normal synchronization.</p>
+  <p>Update the server, clients and menu supervisor. This change only requires restarting the Python processes; PCSX2 can remain open with the current patch. Using the command afterwards requires no restart. Automated checks pass; visual testing in game is still pending.</p>
+  <p><small>23 October 2026</small></p>
+  </div>
+
+  <div class="card"><h2 id="push-refinements-23oct">Push refinements — schema 16 <span class="tag ok">confirmed</span></h2>
+  <p>The user confirmed the reverse movement, talking-NPC pushes and NPC/player feather rules in game. The new timing candidate starts halfway through the reverse clip and plays the remaining half at 1.25× (about 0.27 seconds). Looping is disabled; the network event lifetime remains separate. The user confirmed this timing in game after a full restart.</p>
   <p>The user confirmed that pushing works without disconnecting. This candidate restores the reverse movement through a private copy with reversed keys while the engine advances normally. It also interrupts a targeted NPC conversation before the fall. Duck NPCs drop three feathers with a 10% chance decided once by the server; players keep their regular guaranteed loss, subject to their balance and pool availability.</p>
-  <p>Update the server and every client to schema 16, fully restart PCSX2 and load a memory-card save. Check reversed movement on foot with Bill, Aldo and Fred, both screens, a pair of talking NPCs and player drops. The 10% chance applies to duck NPCs only. The timing adjustment awaits visual confirmation.</p></div>
+  <p>Update the server and every client to schema 16, fully restart PCSX2 and load a memory-card save. Check reversed movement on foot with Bill, Aldo and Fred, both screens, a pair of talking NPCs and player drops. The 10% chance applies to duck NPCs only. The user also confirmed the timing adjustment.</p></div>
 
   <div class="card" id="interactions-23oct"><h3>Online interactions — schema 15 <span class="tag wip">testing</span></h3>
   <p>After the input correction, the user reported a crash/disconnection for all players, including on foot without a skateboard. Logs show an accepted empty push followed by an invalid game handle; the server stays running. The reverse clip could remain active after its timeout. The new candidate plays the same native movement forward and explicitly restores idle after the push, preserving damage and vehicle actions. Owning a skateboard is not required. The connection fix still needs in-game confirmation.</p>

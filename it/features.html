@@ -58,6 +58,7 @@
       <li><a href="#riconnessione">Rientro dal gioco</a></li>
       <li><a href="#campagna">Campagna in compagnia</a></li>
       <li><a href="#freeplay-entry-23oct">Free Play: blocco dei volumi missione prima della transizione</a></li>
+      <li><a href="#embedded-iso-23oct">Mod incorporata nella ISO</a></li>
       <li><a href="#push-refinements-23oct">Rifiniture spinta — schema 16</a></li>
       <li><a href="#interactions-23oct">Interazioni online — schema 15</a></li>
       <li><a href="#online-additions">Modalità, acquisti e spinta</a></li>
@@ -248,9 +249,19 @@
   <p>693 test online eseguiti: 692 passati, uno saltato. Prova TCP su due client e ingresso tardivo; istruzioni native e formato delle rotazioni verificati. Ultima correzione del crash e resa visiva restano da confermare nel gioco.</p>
   <p>Aggiornare server e tutti i client allo schema 15, chiudere completamente PCSX2 e ripartire con un normale salvataggio memory card. Non usare vecchi savestate. Pacchetto Mac e sorgenti aggiornati; nessuna conferma nel gioco implicita nella build.</p>
   <div class="media"></div>
-  <h2 id="push-refinements-23oct">Rifiniture spinta — schema 16 <span class="tag wip">in prova</span></h2>
-  <p>L’utente ha confermato nel gioco reverse, spinta agli NPC in dialogo e regole piume NPC/player. La nuova taratura parte da metà clip inversa e riproduce la metà restante a 1,25× (circa 0,27 secondi). Loop disabilitato; durata dell’evento di rete separata da quella visiva. Questa taratura richiede avvio completo e conferma visiva.</p>
+  <h2 id="push-refinements-23oct">Rifiniture spinta — schema 16 <span class="tag ok">confermato</span></h2>
+  <p>L’utente ha confermato nel gioco reverse, spinta agli NPC in dialogo e regole piume NPC/player. La nuova taratura parte da metà clip inversa e riproduce la metà restante a 1,25× (circa 0,27 secondi). Loop disabilitato; durata dell’evento di rete separata da quella visiva. L’utente ha confermato anche questa taratura nel gioco dopo l’avvio completo.</p>
   <p>L’utente conferma che la spinta funziona senza disconnessioni. Il candidato ripristina il movimento inverso con una copia privata delle chiavi invertite, mentre il motore scorre normalmente in avanti. Interrompe anche la conversazione dell’NPC colpito prima della caduta. Le papere NPC lasciano tre piume con probabilità del 10%, decisa una sola volta dal server; i player mantengono la perdita sempre attiva, entro saldo e disponibilità del pool.</p>
+  <div class="media"></div>
+  <h2 id="reset-position-23oct">Resetta posizione del giocatore <span class="tag wip">in prova</span></h2>
+  <p>L’host apre L1+SU → Giocatori → nome → Resetta posizione per riportare quel giocatore esattamente a (0, 0, 0). Piume, sblocchi, guardaroba e orientamento vengono conservati. Se è su un mezzo, scende prima. Il comando arriva al successivo scambio del profilo, normalmente entro circa due secondi; se è scollegato, viene applicato al prossimo ingresso. Gli altri client ricevono la nuova posa tramite la sincronizzazione ordinaria.</p>
+  <p>Aggiornare server, client e supervisore del menu. Per questa sola modifica basta riavviare i processi Python: PCSX2 può restare aperto con la patch corrente. Usare poi il comando non richiede riavvii. Verifiche automatiche superate; collaudo visivo nel gioco ancora da eseguire.</p>
+  <div class="media"></div>
+
+  <h2 id="embedded-iso-23oct">Mod incorporata nella ISO <span class="tag wip">fattibilità · non implementato</span></h2>
+  <p>La patch attuale contiene 25.014 parole EE uniche (circa 98 KiB), applicate al caricamento dell’ELF, più 12 parole audio IOP ripetute. Il contatore non significa 25.000 scritture ripetute a ogni frame. Il codice nativo stabile di furto, furgone, volo e helper della spinta può essere incorporato nell’eseguibile modificato. Il gioco continuerà a caricare quel codice in RAM.</p>
+  <p>Solo 145 parole corrispondono a segmenti ELF già presenti su file; 24.869 occupano pagine aggiuntive di helper/dati. Servono nuovi segmenti caricabili e una ISO ricostruita, aggiornando identificazione e controlli del launcher. Alcuni helper vengono ancora generati al collegamento e vanno consolidati anch’essi. Stati online, profili, voce e copie animate costruite in Python restano dinamici, salvo un porting separato. La protezione audio IOP deve sopravvivere ai ricaricamenti del modulo.</p>
+  <p>È un inventario e un progetto di migrazione, non una ISO già ricostruita o collaudata. Nessun aumento automatico degli FPS dimostrato: quasi tutte le scritture elencate avvengono già soltanto al boot. La configurazione attuale usa ancora il PNACH.</p>
   <div class="media"></div>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>
