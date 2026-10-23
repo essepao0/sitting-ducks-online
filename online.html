@@ -134,6 +134,9 @@
   <p>Free Play mission points are hidden on the game thread each frame, including after reactivation; the previous three-second refresh is removed. The remote running animation blend path is corrected across terrain types. Speech uses all mouth bones moved by Talk, adds missing tracks for Aldo and Fred, and exaggerates opening through normalized rotations.</p>
   <p>693 online tests run: 692 passed, one skipped. Two-client TCP and late-join checks, native instructions and rotation format verified. The latest crash correction and visual behaviour still need in-game confirmation.</p>
   <p>Update the server and every client to schema 15, fully close PCSX2 and restart from a normal memory-card save. Do not use older savestates. Mac and source packages updated; a successful build does not imply in-game confirmation.</p>
+  <h2 id="push-refinements-23oct">Push refinements — schema 16 <span class="tag wip">testing</span></h2>
+  <p>The user confirmed that pushing works without disconnecting. This candidate restores the reverse movement through a private copy with reversed keys while the engine advances normally. It also interrupts a targeted NPC conversation before the fall. Duck NPCs drop three feathers with a 10% chance decided once by the server; players keep their regular guaranteed loss, subject to their balance and pool availability.</p>
+  <p>Update the server and every client to schema 16, fully restart PCSX2 and load a memory-card save. Check reversed movement on foot with Bill, Aldo and Fred, both screens, a pair of talking NPCs and player drops. The 10% chance applies to duck NPCs only. These refinements await visual confirmation.</p>
 </main>
 <footer>Unofficial fan project. No game files are distributed.</footer>
 </body>

@@ -34,6 +34,10 @@
   <!-- New version = new .card block AT THE TOP, with date, new features, fixes, known limits and download links. -->
 
 
+  <div class="card"><h2 id="push-refinements-23oct">Push refinements — schema 16 <span class="tag wip">testing</span></h2>
+  <p>The user confirmed that pushing works without disconnecting. This candidate restores the reverse movement through a private copy with reversed keys while the engine advances normally. It also interrupts a targeted NPC conversation before the fall. Duck NPCs drop three feathers with a 10% chance decided once by the server; players keep their regular guaranteed loss, subject to their balance and pool availability.</p>
+  <p>Update the server and every client to schema 16, fully restart PCSX2 and load a memory-card save. Check reversed movement on foot with Bill, Aldo and Fred, both screens, a pair of talking NPCs and player drops. The 10% chance applies to duck NPCs only. These refinements await visual confirmation.</p></div>
+
   <div class="card" id="interactions-23oct"><h3>Online interactions — schema 15 <span class="tag wip">testing</span></h3>
   <p>After the input correction, the user reported a crash/disconnection for all players, including on foot without a skateboard. Logs show an accepted empty push followed by an invalid game handle; the server stays running. The reverse clip could remain active after its timeout. The new candidate plays the same native movement forward and explicitly restores idle after the push, preserving damage and vehicle actions. Owning a skateboard is not required. The connection fix still needs in-game confirmation.</p>
   <p>Follow-up: both clients logged at least 28 pushes, six targeting NPCs, without another disconnect. RAM samples show forward playback and return to idle. This is runtime evidence for the observed sequence; visual confirmation and the remaining interaction checks are pending.</p>

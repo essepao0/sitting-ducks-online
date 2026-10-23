@@ -58,6 +58,7 @@
       <li><a href="#riconnessione">Rientro dal gioco</a></li>
       <li><a href="#campagna">Campagna in compagnia</a></li>
       <li><a href="#freeplay-entry-23oct">Free Play: blocco dei volumi missione prima della transizione</a></li>
+      <li><a href="#push-refinements-23oct">Rifiniture spinta — schema 16</a></li>
       <li><a href="#interactions-23oct">Interazioni online — schema 15</a></li>
       <li><a href="#online-additions">Modalità, acquisti e spinta</a></li>
       <li><a href="#select-help">Comandi mentre tieni Select</a></li>
@@ -246,6 +247,9 @@
   <p>I punti M in Free Play vengono nascosti sul thread del gioco a ogni frame, anche dopo una riattivazione: rimosso il precedente refresh ogni 3 secondi. Corretto il percorso di fusione delle animazioni della corsa remota sui diversi terreni. Il parlato usa tutte le ossa della bocca mosse da Talk, aggiungendo le tracce assenti per Aldo e Fred e amplificando l’apertura con rotazioni normalizzate.</p>
   <p>693 test online eseguiti: 692 passati, uno saltato. Prova TCP su due client e ingresso tardivo; istruzioni native e formato delle rotazioni verificati. Ultima correzione del crash e resa visiva restano da confermare nel gioco.</p>
   <p>Aggiornare server e tutti i client allo schema 15, chiudere completamente PCSX2 e ripartire con un normale salvataggio memory card. Non usare vecchi savestate. Pacchetto Mac e sorgenti aggiornati; nessuna conferma nel gioco implicita nella build.</p>
+  <div class="media"></div>
+  <h2 id="push-refinements-23oct">Rifiniture spinta — schema 16 <span class="tag wip">in prova</span></h2>
+  <p>L’utente conferma che la spinta funziona senza disconnessioni. Il candidato ripristina il movimento inverso con una copia privata delle chiavi invertite, mentre il motore scorre normalmente in avanti. Interrompe anche la conversazione dell’NPC colpito prima della caduta. Le papere NPC lasciano tre piume con probabilità del 10%, decisa una sola volta dal server; i player mantengono la perdita sempre attiva, entro saldo e disponibilità del pool.</p>
   <div class="media"></div>
 </main>
 <footer>Progetto fan-made non ufficiale. Nessun file del gioco viene distribuito.</footer>

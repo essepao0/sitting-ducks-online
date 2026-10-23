@@ -33,6 +33,10 @@
   <!-- Nuova versione = nuovo blocco .card IN CIMA, con data, novità, correzioni, limiti noti e link ai download. -->
 
 
+  <div class="card"><h2 id="push-refinements-23oct">Rifiniture spinta — schema 16 <span class="tag wip">in prova</span></h2>
+  <p>L’utente conferma che la spinta funziona senza disconnessioni. Il candidato ripristina il movimento inverso con una copia privata delle chiavi invertite, mentre il motore scorre normalmente in avanti. Interrompe anche la conversazione dell’NPC colpito prima della caduta. Le papere NPC lasciano tre piume con probabilità del 10%, decisa una sola volta dal server; i player mantengono la perdita sempre attiva, entro saldo e disponibilità del pool.</p>
+  <p>Aggiornare server e tutti i client allo schema 16, riavviare completamente PCSX2 e caricare dalla memory card. Verificare reverse a piedi con Bill, Aldo e Fred, entrambi gli schermi, una coppia di NPC in dialogo e perdita piume dei player. Il 10% riguarda soltanto le papere NPC. Rifiniture ancora da confermare visivamente.</p></div>
+
   <div class="card" id="interactions-23oct"><h3>Interazioni online — schema 15 <span class="tag wip">in prova</span></h3>
   <p>Dopo la correzione input l’utente ha segnalato crash/disconnessione di tutti i player, anche a piedi senza skate. I log mostrano una spinta a vuoto accettata, poi l’handle del gioco non valido; il server resta acceso. La clip al contrario poteva restare attiva dopo la scadenza. Il nuovo candidato riproduce lo stesso movimento nativo in avanti e ripristina esplicitamente idle, dando precedenza a danni e mezzi. Non richiede il possesso dello skate. La risoluzione della disconnessione resta da confermare nel gioco.</p>
   <p>Riscontro successivo: entrambi i client hanno registrato almeno 28 spinte, sei contro NPC, senza nuove disconnessioni. I campioni RAM mostrano riproduzione in avanti e ritorno a idle. È una verifica della sequenza osservata; conferma visiva e collaudo delle altre interazioni restano aperti.</p>
